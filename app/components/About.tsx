@@ -6,20 +6,20 @@ import Image from "next/image"
 
 export default function About() {
   const skills = [
-    { icon: <Code className="w-8 h-8 text-blue-500" />, title: "Frontend", description: "" },
-    { icon: <Server className="w-8 h-8 text-green-500" />, title: "Backend", description: "" },
-    { icon: <Database className="w-8 h-8 text-purple-500" />, title: "Base de données", description: "" },
-    { icon: <Zap className="w-8 h-8 text-yellow-500" />, title: "Hosting", description: "" },
+    { icon: <Code className="w-8 h-8 text-primary" />, title: "Frontend", description: "" },
+    { icon: <Server className="w-8 h-8 text-primary" />, title: "Backend", description: "" },
+    { icon: <Database className="w-8 h-8 text-primary" />, title: "Base de données", description: "" },
+    { icon: <Zap className="w-8 h-8 text-primary" />, title: "Hosting", description: "" },
   ]
 
   return (
     <section
       id="about"
-      className="py-20 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-indigo-900 transition-colors duration-300 overflow-hidden relative"
+      className="py-20 bg-background dark:bg-background transition-colors duration-300 overflow-hidden relative"
     >
       <div className="container mx-auto px-6 relative z-10">
         <motion.h2
-          className="text-4xl font-bold mb-8 text-center dark:text-white"
+          className="text-4xl font-bold mb-8 text-center text-foreground"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -35,11 +35,13 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-            Étudiant en 2ᵉ année de BUT Informatique à l'IUT d'Arles, je conçois et développe des applications web et mobiles. Passionné par la tech, j'aime créer des projets concrets.
+            <p className="text-xl text-foreground leading-relaxed mb-6">
+              Étudiant en 2ᵉ année de BUT Informatique à l'IUT d'Arles, je conçois et développe des applications web et
+              mobiles. Passionné par la tech, j'aime créer des projets concrets.
             </p>
-            <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
-              Sapeur-pompier volontaire depuis 2017, je sais gérer la pression et travailler en équipe. Actif dans mon association étudiante, j'y affine mon leadership et ma gestion de projets.
+            <p className="text-xl text-foreground leading-relaxed">
+              Sapeur-pompier volontaire depuis 2017, je sais gérer la pression et travailler en équipe. Actif dans mon
+              association étudiante, j'y affine mon leadership et ma gestion de projets.
             </p>
           </motion.div>
           <motion.div
@@ -50,10 +52,10 @@ export default function About() {
             transition={{ duration: 0.5 }}
           >
             {skills.map((skill, index) => (
-              <div key={index} className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+              <div key={index} className="bg-card text-card-foreground p-6 rounded-lg shadow-md">
                 {skill.icon}
-                <h3 className="text-xl font-semibold mt-4 mb-2 dark:text-white">{skill.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300">{skill.description}</p>
+                <h3 className="text-xl font-semibold mt-4 mb-2">{skill.title}</h3>
+                <p className="text-muted-foreground">{skill.description}</p>
               </div>
             ))}
           </motion.div>

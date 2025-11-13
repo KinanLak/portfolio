@@ -46,13 +46,10 @@ export default function Contact() {
   }
 
   return (
-    <section
-      id="contact"
-      className="py-20 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-indigo-900 transition-colors duration-300 overflow-hidden relative"
-    >
+    <section id="contact" className="py-20 transition-colors duration-300 overflow-hidden relative bg-background">
       <div className="container mx-auto px-6 relative z-10">
         <motion.h2
-          className="text-4xl font-bold mb-12 text-center dark:text-white"
+          className="text-4xl font-bold mb-12 text-center text-foreground"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -68,25 +65,25 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
-              <h3 className="text-2xl font-semibold mb-6 dark:text-white">Informations de Contact</h3>
+            <div className="bg-card text-card-foreground p-8 rounded-xl shadow-lg">
+              <h3 className="text-2xl font-semibold mb-6">Informations de Contact</h3>
               <div className="space-y-6">
                 <a
                   href="mailto:kinan.lakh@gmail.com"
-                  className="flex items-center text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
+                  className="flex items-center text-muted-foreground hover:text-primary transition-colors duration-300"
                 >
-                  <Mail className="w-6 h-6 mr-3 text-blue-600" />
+                  <Mail className="w-6 h-6 mr-3 text-primary" />
                   kinan.lakh@gmail.com
                 </a>
                 <a
                   href="tel:+33669527833"
-                  className="flex items-center text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
+                  className="flex items-center text-muted-foreground hover:text-primary transition-colors duration-300"
                 >
-                  <Phone className="w-6 h-6 mr-3 text-blue-600" />
+                  <Phone className="w-6 h-6 mr-3 text-primary" />
                   +33 6 69 52 78 33
                 </a>
-                <div className="flex items-center text-gray-600 dark:text-gray-300">
-                  <MapPin className="w-6 h-6 mr-3 text-blue-600" />
+                <div className="flex items-center text-muted-foreground">
+                  <MapPin className="w-6 h-6 mr-3 text-primary" />
                   Arles, France
                 </div>
               </div>
@@ -99,66 +96,66 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <form onSubmit={handleSubmit(onSubmit)} className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+            <form onSubmit={handleSubmit(onSubmit)} className="bg-card text-card-foreground p-8 rounded-xl shadow-lg">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label htmlFor="name" className="block text-sm font-medium text-foreground mb-1">
                     Nom
                   </label>
                   <input
                     {...register("name")}
                     type="text"
                     className={`w-full px-4 py-2 rounded-md border ${
-                      errors.name ? "border-red-500" : "border-gray-300 dark:border-gray-600"
-                    } focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white`}
+                      errors.name ? "border-destructive" : "border-input"
+                    } focus:outline-none focus:ring-2 focus:ring-ring bg-background text-foreground`}
                   />
-                  {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>}
+                  {errors.name && <p className="mt-1 text-sm text-destructive">{errors.name.message}</p>}
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label htmlFor="email" className="block text-sm font-medium text-foreground mb-1">
                     Email
                   </label>
                   <input
                     {...register("email")}
                     type="email"
                     className={`w-full px-4 py-2 rounded-md border ${
-                      errors.email ? "border-red-500" : "border-gray-300 dark:border-gray-600"
-                    } focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white`}
+                      errors.email ? "border-destructive" : "border-input"
+                    } focus:outline-none focus:ring-2 focus:ring-ring bg-background text-foreground`}
                   />
-                  {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>}
+                  {errors.email && <p className="mt-1 text-sm text-destructive">{errors.email.message}</p>}
                 </div>
               </div>
               <div className="mt-6">
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-1">
                   Sujet
                 </label>
                 <input
                   {...register("subject")}
                   type="text"
                   className={`w-full px-4 py-2 rounded-md border ${
-                    errors.subject ? "border-red-500" : "border-gray-300 dark:border-gray-600"
-                  } focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white`}
+                    errors.subject ? "border-destructive" : "border-input"
+                  } focus:outline-none focus:ring-2 focus:ring-ring bg-background text-foreground`}
                 />
-                {errors.subject && <p className="mt-1 text-sm text-red-500">{errors.subject.message}</p>}
+                {errors.subject && <p className="mt-1 text-sm text-destructive">{errors.subject.message}</p>}
               </div>
               <div className="mt-6">
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label htmlFor="message" className="block text-sm font-medium text-foreground mb-1">
                   Message
                 </label>
                 <textarea
                   {...register("message")}
                   rows={4}
                   className={`w-full px-4 py-2 rounded-md border ${
-                    errors.message ? "border-red-500" : "border-gray-300 dark:border-gray-600"
-                  } focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white`}
+                    errors.message ? "border-destructive" : "border-input"
+                  } focus:outline-none focus:ring-2 focus:ring-ring bg-background text-foreground`}
                 ></textarea>
-                {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message.message}</p>}
+                {errors.message && <p className="mt-1 text-sm text-destructive">{errors.message.message}</p>}
               </div>
               <div className="mt-6">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center ${
+                  className={`w-full bg-primary text-primary-foreground py-2 px-4 rounded-md hover:bg-primary/90 transition-colors duration-300 flex items-center justify-center ${
                     isSubmitting ? "opacity-75 cursor-not-allowed" : ""
                   }`}
                 >
@@ -167,9 +164,7 @@ export default function Contact() {
                 </button>
               </div>
               {submitSuccess && (
-                <div className="mt-4 p-4 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-md">
-                  Message envoyé avec succès !
-                </div>
+                <div className="mt-4 p-4 bg-primary/10 text-primary rounded-md">Message envoyé avec succès !</div>
               )}
             </form>
           </motion.div>

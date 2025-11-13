@@ -5,25 +5,24 @@ import { Code, Layout, Server, Smartphone } from "lucide-react"
 import Image from "next/image"
 
 export default function Services() {
-  // Remplacer les services par les projets personnels
   const services = [
     {
-      icon: <Layout className="w-12 h-12 text-blue-500" />,
+      icon: <Layout className="w-12 h-12 text-primary" />,
       title: "Papaya",
       description: "Réseau social autour des reviews et expériences sur les jeux vidéos.",
     },
     {
-      icon: <Server className="w-12 h-12 text-green-500" />,
+      icon: <Server className="w-12 h-12 text-primary" />,
       title: "BET4FREE",
       description: "Plateforme de paris sportifs gratuits avec un accent mis sur le côté réseaux social.",
     },
     {
-      icon: <Smartphone className="w-12 h-12 text-yellow-500" />,
+      icon: <Smartphone className="w-12 h-12 text-primary" />,
       title: "Les Mouettes",
       description: "Application de réservation et paiement pour un club vacances pour enfants.",
     },
     {
-      icon: <Code className="w-12 h-12 text-purple-500" />,
+      icon: <Code className="w-12 h-12 text-primary" />,
       title: "Développement Full Stack",
       description:
         "Rédaction de cahiers des charges, conception de schémas de données, développement d'API, administration de serveurs et application des normes RGPD.",
@@ -31,14 +30,10 @@ export default function Services() {
   ]
 
   return (
-    <section
-      id="services"
-      className="py-20 bg-gradient-to-br from-indigo-50 to-blue-100 dark:from-gray-900 dark:to-blue-900 transition-colors duration-300 overflow-hidden relative"
-    >
+    <section id="services" className="py-20 bg-background transition-colors duration-300 overflow-hidden relative">
       <div className="container mx-auto px-6 relative z-10">
-        {/* Modifier le titre de la section */}
         <motion.h2
-          className="text-4xl font-bold mb-12 text-center dark:text-white"
+          className="text-4xl font-bold mb-12 text-center text-foreground"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -50,7 +45,7 @@ export default function Services() {
           {services.map((service, index) => (
             <motion.div
               key={index}
-              className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-card text-card-foreground p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -58,9 +53,9 @@ export default function Services() {
             >
               <div className="flex items-center mb-4">
                 {service.icon}
-                <h3 className="text-2xl font-semibold ml-4 dark:text-white">{service.title}</h3>
+                <h3 className="text-2xl font-semibold ml-4">{service.title}</h3>
               </div>
-              <p className="text-gray-600 dark:text-gray-300">{service.description}</p>
+              <p className="text-muted-foreground">{service.description}</p>
             </motion.div>
           ))}
         </div>

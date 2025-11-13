@@ -8,6 +8,30 @@ import AnimatedSectionHeader from "./AnimatedSectionHeader"
 export default function Experience() {
   const experiences = [
     {
+      company: "NGE - BTP",
+      location: "Saint-Étienne-du-Grès, Provence-Alpes-Côte d'Azur, France",
+      period: "Avril 2025 - Juin 2025",
+      role: "Développeur Logiciel (Stage)",
+      responsibilities: [
+        "Conception et développement d'une base documentaire augmentée par intelligence artificielle",
+        "Intégration de modèles de langage (LLM) pour l'enrichissement et l'automatisation des réponses",
+        "Développement de scripts en PowerShell et Python pour l'automatisation des processus",
+        "Réécriture complète de l'ancienne base documentaire à l'aide d'IA génératives",
+        "Optimisation de l'utilisation des LLM via la gestion des chunks et tokens",
+      ],
+    },
+    {
+      company: "TNZPV Productions & Studio",
+      location: "Arles, Provence-Alpes-Côte d'Azur, France",
+      period: "Septembre 2025 - Aujourd'hui",
+      role: "Technicien Informatique (Contrat en alternance)",
+      responsibilities: [
+        "Support technique et maintenance des systèmes informatiques",
+        "Gestion de l'infrastructure IT et des services",
+        "Assistance aux utilisateurs et résolution de problèmes",
+      ],
+    },
+    {
       company: "IUT d'Aix Marseille - Arles",
       location: "Arles, France",
       period: "Depuis Septembre 2023",

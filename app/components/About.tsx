@@ -36,7 +36,7 @@ export default function About() {
             transition={{ duration: 0.5 }}
           >
             <p className="text-xl text-foreground leading-relaxed mb-6">
-              Étudiant en 2ᵉ année de BUT Informatique à l'IUT d'Arles, je conçois et développe des applications web et
+              Étudiant en 3ᵉ année de BUT Informatique à l'IUT d'Arles, je conçois et développe des applications web et
               mobiles. Passionné par la tech, j'aime créer des projets concrets.
             </p>
             <p className="text-xl text-foreground leading-relaxed">

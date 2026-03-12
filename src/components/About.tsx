@@ -2,21 +2,20 @@ import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import profileData from "@/data/profile";
+import Marquee from "@/components/Marquee";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const textRefs = useRef<HTMLParagraphElement[]>([]);
-  const lineRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(titleRef.current, {
-        y: 100,
+      // Massive number reveal
+      gsap.from("[data-about-num]", {
+        y: 200,
         opacity: 0,
-        duration: 1,
+        duration: 1.2,
         ease: "power4.out",
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -25,135 +24,145 @@ export default function About() {
         },
       });
 
-      gsap.from(lineRef.current, {
-        scaleX: 0,
-        duration: 1.2,
+      // Title words stagger
+      gsap.from("[data-about-word]", {
+        y: "100%",
+        duration: 0.8,
+        stagger: 0.1,
         ease: "power4.out",
-        transformOrigin: "left",
         scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
+          trigger: "[data-about-title]",
+          start: "top 85%",
           toggleActions: "play none none reverse",
         },
       });
 
-      textRefs.current.forEach((el, i) => {
-        if (!el) return;
-        gsap.from(el, {
-          y: 60,
-          opacity: 0,
-          duration: 0.8,
-          delay: 0.2 + i * 0.15,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 70%",
-            toggleActions: "play none none reverse",
-          },
-        });
+      // Bio paragraphs
+      gsap.from("[data-about-bio]", {
+        y: 60,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: "[data-about-bio]",
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      // Facts
+      gsap.from("[data-about-fact]", {
+        x: -40,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: "[data-about-facts]",
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
       });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
+  const facts = [
+    { label: "Location", value: profileData.location },
+    { label: "Focus", value: "Web & Mobile" },
+    { label: "Status", value: "Open to opportunities" },
+    { label: "Side", value: "Firefighter since 2017" },
+  ];
+
   return (
     <section
       id="about"
       ref={sectionRef}
-      className="relative min-h-screen bg-black py-section-sm md:py-section px-6 md:px-12"
+      className="relative bg-black py-section-sm md:py-section overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto">
-        {/* Section label */}
-        <div className="flex items-center gap-4 mb-4">
-          <span className="font-mono text-[10px] text-grey tracking-[0.3em] uppercase">
-            01
-          </span>
-          <div ref={lineRef} className="h-px bg-accent flex-grow max-w-32" />
-          <span className="font-mono text-[10px] text-grey tracking-[0.3em] uppercase">
+      {/* Giant section number */}
+      <div className="absolute -top-8 right-4 md:right-12 overflow-hidden">
+        <span
+          data-about-num
+          className="font-display text-[clamp(12rem,30vw,28rem)] text-dark leading-none select-none block"
+        >
+          01
+        </span>
+      </div>
+
+      <div className="relative z-10 px-4 md:px-8 lg:px-12">
+        {/* Section tag */}
+        <div className="flex items-center gap-4 mb-8">
+          <div className="w-16 h-[2px] bg-accent" />
+          <span className="font-mono text-sm text-accent tracking-[0.3em] uppercase">
             Manifesto
           </span>
         </div>
 
-        {/* Title */}
-        <h2
-          ref={titleRef}
-          className="font-display text-[clamp(3rem,10vw,8rem)] text-white-pure leading-[0.85] mb-12"
-        >
-          About
-          <span className="text-accent">.</span>
-        </h2>
-
-        {/* Content grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16">
-          {/* Left column — bio */}
-          <div className="md:col-span-7 space-y-6">
-            {profileData.bio.map((paragraph, i) => (
-              <p
-                key={i}
-                ref={(el) => {
-                  if (el) textRefs.current[i] = el;
-                }}
-                className="font-mono text-sm md:text-base text-grey-light leading-relaxed"
-              >
-                {paragraph}
-              </p>
+        {/* Title — big and broken across lines */}
+        <div data-about-title className="mb-16 md:mb-24">
+          <h2 className="font-display text-[clamp(4rem,12vw,11rem)] text-white-pure leading-[0.85]">
+            {"Who I Am".split(" ").map((word, i) => (
+              <span key={i} className="overflow-hidden inline-block mr-[0.2em]">
+                <span data-about-word className="inline-block">
+                  {word}
+                </span>
+              </span>
             ))}
-          </div>
-
-          {/* Right column — quick facts */}
-          <div className="md:col-span-5 space-y-8">
-            <div
-              ref={(el) => {
-                if (el) textRefs.current[profileData.bio.length] = el;
-              }}
-              className="border-l-2 border-accent pl-6"
-            >
-              <h3 className="font-display text-2xl text-white-pure mb-4">
-                Quick Facts
-              </h3>
-              <ul className="space-y-3">
-                {[
-                  { label: "Location", value: profileData.location },
-                  { label: "Focus", value: "Web & Mobile Development" },
-                  { label: "Status", value: "Open to opportunities" },
-                  {
-                    label: "Other",
-                    value: "Volunteer Firefighter since 2017",
-                  },
-                ].map((fact, i) => (
-                  <li key={i} className="font-mono text-sm">
-                    <span className="text-accent">{fact.label}</span>
-                    <span className="text-grey mx-2">//</span>
-                    <span className="text-grey-light">{fact.value}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Decorative block */}
-            <div
-              ref={(el) => {
-                if (el) textRefs.current[profileData.bio.length + 1] = el;
-              }}
-              className="bg-dark p-6 border border-dark-light"
-            >
-              <p className="font-mono text-xs text-grey leading-loose">
-                <span className="text-accent">$</span> cat manifesto.txt
-                <br />
-                <span className="text-grey-light">
-                  &gt; Code with intention.
-                </span>
-                <br />
-                <span className="text-grey-light">&gt; Build with craft.</span>
-                <br />
-                <span className="text-grey-light">
-                  &gt; Ship with confidence.
-                </span>
-              </p>
-            </div>
-          </div>
+            <span className="text-accent">.</span>
+          </h2>
         </div>
+
+        {/* Bio — two massive columns */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 mb-20 md:mb-32">
+          {profileData.bio.map((paragraph, i) => (
+            <p
+              key={i}
+              data-about-bio
+              className="font-mono text-base md:text-lg lg:text-xl text-grey-light leading-[1.9]"
+            >
+              {paragraph}
+            </p>
+          ))}
+        </div>
+
+        {/* Facts — horizontal brutal layout */}
+        <div data-about-facts className="grid grid-cols-2 md:grid-cols-4 gap-0 border-t border-dark-light">
+          {facts.map((fact, i) => (
+            <div
+              key={i}
+              data-about-fact
+              className="border-b md:border-b-0 md:border-r border-dark-light last:border-r-0 last:border-b-0 p-6 md:p-8 group hover:bg-dark transition-colors duration-500"
+            >
+              <span className="font-mono text-[10px] md:text-xs text-accent tracking-[0.3em] uppercase block mb-3">
+                {fact.label}
+              </span>
+              <span className="font-mono text-sm md:text-base text-white block">
+                {fact.value}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Divider marquee */}
+      <div className="mt-section-sm md:mt-section border-y border-dark-light py-3">
+        <Marquee reverse speed={30}>
+          {Array(6)
+            .fill(null)
+            .map((_, i) => (
+              <span
+                key={i}
+                className="font-display text-xl md:text-2xl text-dark-light mx-6 md:mx-10 flex items-center gap-6 md:gap-10 select-none"
+              >
+                CODE WITH INTENTION &mdash; BUILD WITH CRAFT &mdash; SHIP WITH
+                CONFIDENCE
+                <span className="text-accent/30">&diams;</span>
+              </span>
+            ))}
+        </Marquee>
       </div>
     </section>
   );

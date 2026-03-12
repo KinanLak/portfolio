@@ -1,14 +1,14 @@
 import { useRef, useCallback, useEffect, lazy, Suspense } from "react";
 import gsap from "gsap";
 import profileData from "@/data/profile";
+import Marquee from "@/components/Marquee";
 
 const Scene = lazy(() => import("@/components/Canvas/Scene"));
 
 export default function Hero() {
   const mousePosition = useRef({ x: 0, y: 0 });
   const sectionRef = useRef<HTMLElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const scrollIndicatorRef = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
@@ -22,73 +22,74 @@ export default function Hero() {
     []
   );
 
-  // Entrance animations
+  // Cinematic entrance
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 0.3 });
+      // Start with black overlay
+      gsap.set(overlayRef.current, { scaleY: 1 });
 
-      // Label line
-      tl.from("[data-hero-label]", {
-        width: 0,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power4.out",
+      const tl = gsap.timeline({ delay: 0.2 });
+
+      // Reveal overlay wipe
+      tl.to(overlayRef.current, {
+        scaleY: 0,
+        duration: 1.2,
+        ease: "power4.inOut",
+        transformOrigin: "top",
       });
 
-      // Title first line
+      // First name — slides up from below
       tl.from(
         "[data-hero-first]",
         {
-          y: 120,
-          opacity: 0,
-          duration: 1,
+          y: "100%",
+          duration: 1.2,
           ease: "power4.out",
+        },
+        "-=0.6"
+      );
+
+      // Last name — slides up with delay
+      tl.from(
+        "[data-hero-second]",
+        {
+          y: "100%",
+          duration: 1.2,
+          ease: "power4.out",
+        },
+        "-=0.9"
+      );
+
+      // Marquee fades in
+      tl.from(
+        "[data-hero-marquee]",
+        {
+          opacity: 0,
+          y: 30,
+          duration: 0.8,
+          ease: "power3.out",
         },
         "-=0.4"
       );
 
-      // Title second line (accent)
+      // Side info
       tl.from(
-        "[data-hero-second]",
+        "[data-hero-info] > *",
         {
-          y: 120,
           opacity: 0,
-          duration: 1,
-          ease: "power4.out",
-        },
-        "-=0.7"
-      );
-
-      // Subtitle area
-      tl.from(
-        "[data-hero-subtitle]",
-        {
-          y: 40,
-          opacity: 0,
-          duration: 0.8,
+          x: -20,
+          duration: 0.5,
+          stagger: 0.1,
           ease: "power3.out",
         },
         "-=0.5"
       );
 
-      // Links
+      // Scroll cue
       tl.from(
-        "[data-hero-links]",
-        {
-          y: 20,
-          opacity: 0,
-          duration: 0.6,
-          ease: "power3.out",
-        },
-        "-=0.4"
-      );
-
-      // Scroll indicator
-      tl.from(
-        scrollIndicatorRef.current,
+        "[data-hero-scroll]",
         {
           opacity: 0,
-          y: -10,
           duration: 0.6,
           ease: "power3.out",
         },
@@ -104,84 +105,125 @@ export default function Hero() {
       id="hero"
       ref={sectionRef}
       onMouseMove={handleMouseMove}
-      className="relative h-screen w-full overflow-hidden bg-black flex items-center justify-center"
+      className="relative h-screen w-full overflow-hidden bg-black flex flex-col justify-center"
     >
-      {/* WebGL Particle Background — lazy loaded */}
+      {/* Wipe overlay */}
+      <div
+        ref={overlayRef}
+        className="absolute inset-0 bg-black z-50 origin-top"
+      />
+
+      {/* WebGL Background */}
       <div className="absolute inset-0 z-0">
         <Suspense fallback={null}>
           <Scene mousePosition={mousePosition} />
         </Suspense>
       </div>
 
-      {/* Content */}
-      <div ref={contentRef} className="relative z-10 px-6 md:px-12 w-full max-w-7xl">
-        {/* Top line */}
-        <div className="flex items-center gap-3 mb-6 overflow-hidden">
-          <div data-hero-label className="w-12 h-px bg-accent" />
-          <span data-hero-label className="font-mono text-xs text-grey-light tracking-widest uppercase">
-            Portfolio 2025
+      {/* Vertical side label */}
+      <div className="absolute left-6 top-1/2 -translate-y-1/2 z-20 hidden lg:block">
+        <span className="text-vertical font-mono text-[11px] text-grey tracking-[0.5em] uppercase">
+          Full Stack Developer &mdash; 2025
+        </span>
+      </div>
+
+      {/* Main content — Name fills the viewport */}
+      <div className="relative z-10 w-full">
+        {/* THE NAME — Absolutely massive */}
+        <div className="px-4 md:px-8 lg:px-12">
+          <h1 className="font-display leading-[0.82] tracking-tight">
+            <div className="overflow-hidden">
+              <span
+                data-hero-first
+                data-text={profileData.name.split(" ")[0]}
+                className="glitch block text-[clamp(6rem,20vw,22rem)] text-white-pure"
+              >
+                {profileData.name.split(" ")[0]}
+              </span>
+            </div>
+            <div className="overflow-hidden">
+              <span
+                data-hero-second
+                className="block text-[clamp(6rem,20vw,22rem)] text-accent"
+                style={{ WebkitTextStroke: "2px #FF6600", color: "transparent" }}
+              >
+                {profileData.name.split(" ")[1]}
+              </span>
+            </div>
+          </h1>
+        </div>
+
+        {/* Ticker / Marquee — festival style */}
+        <div data-hero-marquee className="mt-8 md:mt-12 border-y border-dark-light py-4">
+          <Marquee speed={25}>
+            {[
+              "FULL STACK DEVELOPER",
+              "REACT NATIVE",
+              "TYPESCRIPT",
+              "NODE.JS",
+              "PYTHON",
+              "DOCKER",
+              "AWS",
+              "POSTGRESQL",
+              "FASTAPI",
+              "C/C++",
+            ].map((item) => (
+              <span
+                key={item}
+                className="font-display text-2xl md:text-4xl text-grey mx-6 md:mx-10 flex items-center gap-6 md:gap-10"
+              >
+                {item}
+                <span className="text-accent text-lg">&diams;</span>
+              </span>
+            ))}
+          </Marquee>
+        </div>
+      </div>
+
+      {/* Bottom bar — info */}
+      <div
+        data-hero-info
+        className="absolute bottom-12 left-4 md:left-8 lg:left-12 right-4 md:right-8 lg:right-12 z-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-6"
+      >
+        <div className="flex flex-col gap-1">
+          <span className="font-mono text-sm md:text-base text-white">
+            {profileData.tagline}
+          </span>
+          <span className="font-mono text-xs text-grey">
+            Based in {profileData.location}
           </span>
         </div>
 
-        {/* Main title — massive condensed */}
-        <h1 className="font-display text-[clamp(4rem,15vw,14rem)] leading-[0.85] text-white-pure tracking-tight overflow-hidden">
-          <span data-hero-first className="block">
-            {profileData.name.split(" ")[0]}
-          </span>
-          <span data-hero-second className="block text-accent">
-            {profileData.name.split(" ")[1]}
-          </span>
-        </h1>
-
-        {/* Subtitle */}
-        <div data-hero-subtitle className="mt-8 flex items-start gap-6">
-          <div className="w-px h-16 bg-accent hidden md:block" />
-          <div>
-            <p className="font-mono text-lg md:text-xl text-grey-light">
-              {profileData.title}
-            </p>
-            <p className="font-mono text-sm text-grey mt-2 max-w-md">
-              {profileData.tagline}
-            </p>
-          </div>
-        </div>
-
-        {/* Bottom links */}
-        <div data-hero-links className="mt-12 flex items-center gap-6">
+        <div className="flex items-center gap-8">
           <a
             href={profileData.social.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-xs text-grey-light hover:text-accent transition-colors duration-300 tracking-widest uppercase border-b border-grey/30 pb-1 hover:border-accent"
+            className="font-mono text-sm text-white hover:text-accent transition-colors duration-300 uppercase tracking-widest border-b-2 border-accent pb-1"
           >
             GitHub
           </a>
           <a
             href={`mailto:${profileData.email}`}
-            className="font-mono text-xs text-grey-light hover:text-accent transition-colors duration-300 tracking-widest uppercase border-b border-grey/30 pb-1 hover:border-accent"
+            className="font-mono text-sm text-white hover:text-accent transition-colors duration-300 uppercase tracking-widest border-b-2 border-accent pb-1"
           >
-            Contact
+            Email
           </a>
-          <span className="font-mono text-xs text-grey/50">
-            {profileData.location}
-          </span>
         </div>
       </div>
 
       {/* Scroll indicator */}
       <div
-        ref={scrollIndicatorRef}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+        data-hero-scroll
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 hidden md:flex flex-col items-center gap-3"
       >
-        <span className="font-mono text-[10px] text-grey tracking-widest uppercase">
-          Scroll
-        </span>
-        <div className="w-px h-8 bg-gradient-to-b from-accent to-transparent animate-pulse" />
+        <div className="w-[1px] h-12 bg-gradient-to-b from-accent to-transparent" />
       </div>
 
-      {/* Decorative lines */}
-      <div className="absolute top-0 right-12 w-px h-full bg-gradient-to-b from-transparent via-dark-light to-transparent z-0" />
-      <div className="absolute top-0 right-24 w-px h-full bg-gradient-to-b from-transparent via-dark-light/50 to-transparent z-0 hidden md:block" />
+      {/* Corner decorations */}
+      <div className="absolute top-6 right-6 md:top-8 md:right-8 z-20 font-mono text-[10px] text-grey/40 text-right leading-relaxed hidden md:block">
+        PORTFOLIO<br />N&deg;002<br />2025
+      </div>
     </section>
   );
 }

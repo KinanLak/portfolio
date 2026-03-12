@@ -2,20 +2,20 @@ import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import educationData from "@/data/education";
+import Marquee from "@/components/Marquee";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Education() {
   const sectionRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const cardRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(titleRef.current, {
-        y: 100,
+      // Giant background number
+      gsap.from("[data-edu-num]", {
+        y: 200,
         opacity: 0,
-        duration: 1,
+        duration: 1.2,
         ease: "power4.out",
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -24,20 +24,31 @@ export default function Education() {
         },
       });
 
-      cardRefs.current.forEach((el, i) => {
-        if (!el) return;
-        gsap.from(el, {
-          y: 60,
-          opacity: 0,
-          duration: 0.8,
-          delay: i * 0.15,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        });
+      // Title words stagger
+      gsap.from("[data-edu-word]", {
+        y: "100%",
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: "[data-edu-title]",
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      // Timeline cards stagger in
+      gsap.from("[data-edu-card]", {
+        x: -80,
+        opacity: 0,
+        duration: 0.9,
+        stagger: 0.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: "[data-edu-timeline]",
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
       });
     }, sectionRef);
 
@@ -48,76 +59,115 @@ export default function Education() {
     <section
       id="education"
       ref={sectionRef}
-      className="relative min-h-screen bg-black py-section-sm md:py-section px-6 md:px-12"
+      className="relative bg-black py-section-sm md:py-section overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto">
-        {/* Section label */}
-        <div className="flex items-center gap-4 mb-4">
-          <span className="font-mono text-[10px] text-grey tracking-[0.3em] uppercase">
-            05
-          </span>
-          <div className="h-px bg-accent flex-grow max-w-32" />
-          <span className="font-mono text-[10px] text-grey tracking-[0.3em] uppercase">
+      {/* Giant section number */}
+      <div className="absolute -top-8 right-4 md:right-12 overflow-hidden">
+        <span
+          data-edu-num
+          className="font-display text-[clamp(12rem,30vw,28rem)] text-dark leading-none select-none block"
+        >
+          05
+        </span>
+      </div>
+
+      <div className="relative z-10 px-4 md:px-8 lg:px-12">
+        {/* Section tag */}
+        <div className="flex items-center gap-4 mb-8">
+          <div className="w-16 h-[2px] bg-accent" />
+          <span className="font-mono text-sm text-accent tracking-[0.3em] uppercase">
             Origins
           </span>
         </div>
 
-        {/* Title */}
-        <h2
-          ref={titleRef}
-          className="font-display text-[clamp(3rem,10vw,8rem)] text-white-pure leading-[0.85] mb-16"
-        >
-          Education
-          <span className="text-accent">.</span>
-        </h2>
+        {/* Title — massive broken words */}
+        <div data-edu-title className="mb-16 md:mb-24">
+          <h2 className="font-display text-[clamp(4rem,12vw,11rem)] text-white-pure leading-[0.85]">
+            {"Education".split("").map((char, i) => (
+              <span key={i} className="overflow-hidden inline-block">
+                <span data-edu-word className="inline-block">
+                  {char}
+                </span>
+              </span>
+            ))}
+            <span className="text-accent">.</span>
+          </h2>
+        </div>
 
-        {/* Education cards — stacked editorial */}
-        <div className="space-y-8">
+        {/* Timeline — stacked brutal cards */}
+        <div data-edu-timeline className="space-y-0">
           {educationData.items.map((item, i) => (
             <div
               key={item.id}
-              ref={(el) => {
-                if (el) cardRefs.current[i] = el;
-              }}
-              className="group relative grid grid-cols-1 md:grid-cols-12 gap-6 border border-dark-light p-6 md:p-8 hover:border-accent/30 transition-all duration-500"
+              data-edu-card
+              className="group relative border-t border-dark-light first:border-t-0"
             >
-              {/* Left: period + number */}
-              <div className="md:col-span-3 flex md:flex-col items-start gap-2 md:gap-4">
-                <span className="font-display text-5xl md:text-7xl text-dark-light group-hover:text-accent/20 transition-colors duration-500">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="font-mono text-xs text-accent tracking-widest">
-                  {item.period}
-                </span>
+              {/* Card inner */}
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-10 md:py-16 px-0 md:px-4 transition-colors duration-500 group-hover:bg-dark/50">
+                {/* Left column: giant index + period */}
+                <div className="md:col-span-2 flex items-start gap-4 md:flex-col md:gap-2">
+                  <span className="font-display text-[clamp(3rem,8vw,6rem)] text-dark-light leading-none group-hover:text-accent/30 transition-colors duration-500">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="font-mono text-xs md:text-sm text-accent tracking-widest mt-2 md:mt-0">
+                    {item.period}
+                  </span>
+                </div>
+
+                {/* Center column: degree + institution */}
+                <div className="md:col-span-6">
+                  <h3 className="font-display text-[clamp(1.8rem,4vw,3.5rem)] text-white-pure leading-[0.95] group-hover:text-accent transition-colors duration-300 mb-3">
+                    {item.degree}
+                  </h3>
+                  <p className="font-mono text-sm md:text-base text-grey tracking-wide">
+                    {item.institution}
+                  </p>
+                </div>
+
+                {/* Right column: highlights */}
+                <div className="md:col-span-4 flex flex-col justify-center">
+                  <ul className="space-y-3">
+                    {item.highlights.map((highlight, j) => (
+                      <li
+                        key={j}
+                        className="font-mono text-xs md:text-sm text-grey-light flex items-start gap-3"
+                      >
+                        <span className="text-accent mt-0.5 shrink-0 text-lg leading-none">
+                          /
+                        </span>
+                        {highlight}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Bottom accent bar on hover */}
+                <div className="absolute bottom-0 left-0 w-full h-[2px] bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
               </div>
-
-              {/* Right: content */}
-              <div className="md:col-span-9">
-                <h3 className="font-display text-2xl md:text-3xl text-white-pure group-hover:text-accent transition-colors duration-300 mb-2">
-                  {item.degree}
-                </h3>
-                <p className="font-mono text-sm text-grey mb-4">
-                  {item.institution}
-                </p>
-
-                <ul className="space-y-2">
-                  {item.highlights.map((highlight, j) => (
-                    <li
-                      key={j}
-                      className="font-mono text-xs text-grey-light flex items-start gap-2"
-                    >
-                      <span className="text-accent mt-0.5 shrink-0">/</span>
-                      {highlight}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Bottom accent line */}
-              <div className="absolute bottom-0 left-0 w-full h-px bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
             </div>
           ))}
         </div>
+
+        {/* Closing border */}
+        <div className="border-t border-dark-light" />
+      </div>
+
+      {/* Divider marquee */}
+      <div className="mt-section-sm md:mt-section border-y border-dark-light py-3">
+        <Marquee speed={35}>
+          {Array(6)
+            .fill(null)
+            .map((_, i) => (
+              <span
+                key={i}
+                className="font-display text-xl md:text-2xl text-dark-light mx-6 md:mx-10 flex items-center gap-6 md:gap-10 select-none"
+              >
+                NEVER STOP LEARNING &mdash; STAY CURIOUS &mdash; BUILD THE
+                FUTURE
+                <span className="text-accent/30">&diams;</span>
+              </span>
+            ))}
+        </Marquee>
       </div>
     </section>
   );

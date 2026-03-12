@@ -7,31 +7,29 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
   const cardRefs = useRef<HTMLDivElement[]>([]);
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(titleRef.current, {
-        y: 100,
-        opacity: 0,
-        duration: 1,
+      gsap.from("[data-proj-word]", {
+        y: "100%",
+        duration: 0.8,
+        stagger: 0.06,
         ease: "power4.out",
         scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
+          trigger: "[data-proj-title]",
+          start: "top 85%",
           toggleActions: "play none none reverse",
         },
       });
 
-      cardRefs.current.forEach((el, i) => {
+      cardRefs.current.forEach((el) => {
         if (!el) return;
         gsap.from(el, {
           y: 100,
           opacity: 0,
-          duration: 0.8,
-          delay: i * 0.12,
+          duration: 0.9,
           ease: "power3.out",
           scrollTrigger: {
             trigger: el,
@@ -49,101 +47,141 @@ export default function Projects() {
     <section
       id="projects"
       ref={sectionRef}
-      className="relative min-h-screen bg-black-light py-section-sm md:py-section px-6 md:px-12"
+      className="relative bg-black-light py-section-sm md:py-section overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto">
-        {/* Section label */}
-        <div className="flex items-center gap-4 mb-4">
-          <span className="font-mono text-[10px] text-grey tracking-[0.3em] uppercase">
-            04
-          </span>
-          <div className="h-px bg-accent flex-grow max-w-32" />
-          <span className="font-mono text-[10px] text-grey tracking-[0.3em] uppercase">
+      {/* Giant background number */}
+      <div className="absolute -top-8 left-4 md:left-12 overflow-hidden">
+        <span className="font-display text-[clamp(12rem,30vw,28rem)] text-dark leading-none select-none block">
+          04
+        </span>
+      </div>
+
+      <div className="relative z-10 px-4 md:px-8 lg:px-12">
+        {/* Section tag */}
+        <div className="flex items-center gap-4 mb-8">
+          <div className="w-16 h-[2px] bg-accent" />
+          <span className="font-mono text-sm text-accent tracking-[0.3em] uppercase">
             Headliners
           </span>
         </div>
 
-        {/* Title */}
-        <h2
-          ref={titleRef}
-          className="font-display text-[clamp(3rem,10vw,8rem)] text-white-pure leading-[0.85] mb-16"
-        >
-          Projects
-          <span className="text-accent">.</span>
-        </h2>
+        {/* Title + count */}
+        <div data-proj-title className="mb-20 md:mb-28 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <h2 className="font-display text-[clamp(4rem,12vw,11rem)] text-white-pure leading-[0.85]">
+            {"Projects".split("").map((char, i) => (
+              <span key={i} className="overflow-hidden inline-block">
+                <span data-proj-word className="inline-block">
+                  {char}
+                </span>
+              </span>
+            ))}
+            <span className="text-accent">.</span>
+          </h2>
+          <span className="font-display text-6xl md:text-8xl text-accent mb-2">
+            ({String(projectsData.items.length).padStart(2, "0")})
+          </span>
+        </div>
 
-        {/* Project list — editorial layout */}
-        <div className="space-y-2">
-          {projectsData.items.map((project, i) => (
-            <div
-              key={project.id}
-              ref={(el) => {
-                if (el) cardRefs.current[i] = el;
-              }}
-              onMouseEnter={() => setHoveredProject(project.id)}
-              onMouseLeave={() => setHoveredProject(null)}
-              className={`group relative border-t border-dark-light py-8 md:py-10 px-4 md:px-8 transition-all duration-500 cursor-pointer ${
-                hoveredProject === project.id
-                  ? "bg-dark"
-                  : hoveredProject !== null
-                    ? "opacity-30"
-                    : ""
-              }`}
-            >
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                {/* Left: project name */}
-                <div className="flex items-baseline gap-4">
-                  <span className="font-mono text-xs text-accent">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="font-display text-4xl md:text-6xl text-white-pure group-hover:text-accent transition-colors duration-300">
-                    {project.name}
-                  </h3>
-                  {project.featured && (
-                    <span className="font-mono text-[10px] text-accent border border-accent px-2 py-0.5 uppercase tracking-widest hidden md:inline">
-                      Featured
-                    </span>
-                  )}
-                </div>
+        {/* Project cards — full-width dramatic hover */}
+        <div className="space-y-0">
+          {projectsData.items.map((project, i) => {
+            const isHovered = hoveredProject === project.id;
+            const somethingElseHovered =
+              hoveredProject !== null && !isHovered;
 
-                {/* Right: tagline */}
-                <p className="font-mono text-sm text-grey max-w-sm md:text-right">
-                  {project.tagline}
-                </p>
-              </div>
-
-              {/* Expanded content on hover */}
+            return (
               <div
-                className={`overflow-hidden transition-all duration-500 ${
-                  hoveredProject === project.id
-                    ? "max-h-40 mt-6 opacity-100"
-                    : "max-h-0 mt-0 opacity-0"
+                key={project.id}
+                ref={(el) => {
+                  if (el) cardRefs.current[i] = el;
+                }}
+                onMouseEnter={() => setHoveredProject(project.id)}
+                onMouseLeave={() => setHoveredProject(null)}
+                className={`group relative border-t-2 border-dark-light cursor-pointer transition-all duration-700 ${
+                  somethingElseHovered ? "opacity-20" : "opacity-100"
                 }`}
               >
-                <div className="flex flex-col md:flex-row justify-between gap-4">
-                  <p className="font-mono text-xs text-grey-light max-w-lg leading-relaxed">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 md:justify-end">
-                    {project.tags.map((tag) => (
+                {/* Accent background fill on hover */}
+                <div
+                  className={`absolute inset-0 bg-accent transition-transform duration-700 origin-left ${
+                    isHovered ? "scale-x-100" : "scale-x-0"
+                  }`}
+                />
+
+                <div className="relative py-10 md:py-16 px-2 md:px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                  {/* Left: number + name */}
+                  <div className="flex items-baseline gap-4 md:gap-8">
+                    <span
+                      className={`font-mono text-sm transition-colors duration-500 ${
+                        isHovered ? "text-black" : "text-accent"
+                      }`}
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3
+                      className={`font-display text-5xl md:text-7xl lg:text-8xl transition-colors duration-500 ${
+                        isHovered ? "text-black" : "text-white-pure"
+                      }`}
+                    >
+                      {project.name}
+                    </h3>
+                    {project.featured && (
                       <span
-                        key={tag}
-                        className="font-mono text-[10px] text-accent bg-black px-3 py-1 border border-accent/20"
+                        className={`font-mono text-[10px] border px-2 py-1 uppercase tracking-widest transition-colors duration-500 hidden md:inline ${
+                          isHovered
+                            ? "text-black border-black"
+                            : "text-accent border-accent"
+                        }`}
                       >
-                        {tag}
+                        Featured
                       </span>
-                    ))}
+                    )}
+                  </div>
+
+                  {/* Right: tagline */}
+                  <p
+                    className={`font-mono text-sm md:text-base max-w-md md:text-right transition-colors duration-500 ${
+                      isHovered ? "text-black/70" : "text-grey"
+                    }`}
+                  >
+                    {project.tagline}
+                  </p>
+                </div>
+
+                {/* Expanded description */}
+                <div
+                  className={`relative overflow-hidden transition-all duration-700 ${
+                    isHovered ? "max-h-40 pb-10" : "max-h-0"
+                  }`}
+                >
+                  <div className="px-2 md:px-6 flex flex-col md:flex-row justify-between gap-6">
+                    <p
+                      className={`font-mono text-sm md:text-base max-w-2xl leading-relaxed transition-colors duration-500 ${
+                        isHovered ? "text-black/80" : "text-grey-light"
+                      }`}
+                    >
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 md:justify-end">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className={`font-mono text-xs px-3 py-1 uppercase tracking-wider font-bold transition-colors duration-500 ${
+                            isHovered
+                              ? "text-accent bg-black"
+                              : "text-accent bg-dark border border-accent/20"
+                          }`}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-
-              {/* Hover line */}
-              <div className="absolute bottom-0 left-0 w-full h-px bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
-            </div>
-          ))}
-
-          {/* Last border */}
-          <div className="border-t border-dark-light" />
+            );
+          })}
+          <div className="border-t-2 border-dark-light" />
         </div>
       </div>
     </section>

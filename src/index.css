@@ -260,13 +260,13 @@ main > section + section {
 .music-player-disc-center {
   position: absolute;
   inset: 50% auto auto 50%;
-  width: 0.95rem;
-  height: 0.95rem;
-  border: 2px solid rgba(255, 255, 255, 0.18);
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
   border-radius: 9999px;
   background: var(--color-black);
   transform: translate(-50%, -50%);
-  box-shadow: 0 0 0 0.35rem rgba(5, 5, 5, 0.7);
+  box-shadow: 0 0 0 0.2rem rgba(5, 5, 5, 0.7);
 }
 
 .music-player-slider {

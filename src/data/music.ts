@@ -5,7 +5,7 @@ const music: MusicData = {
   artist: "Portfolio soundtrack",
   src: "/evol.mp3",
   bpm: 124,
-  seekBeats: 10,
+  seekBeats: 4,
   // Positive values delay the visuals. Negative values make them react earlier.
   syncOffsetMs: 0,
   loop: true,

@@ -65,12 +65,12 @@ export default function CustomCursor() {
       {/* Outer ring */}
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-8 h-8 -translate-x-1/2 -translate-y-1/2 rounded-full border border-accent/40 pointer-events-none z-[10000] mix-blend-difference hidden md:block"
+        className="fixed top-0 left-0 w-8 h-8 -translate-x-1/2 -translate-y-1/2 rounded-full border border-accent/40 pointer-events-none z-10000 mix-blend-difference hidden md:block"
       />
       {/* Inner dot */}
       <div
         ref={cursorDotRef}
-        className="fixed top-0 left-0 w-1 h-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent pointer-events-none z-[10000] hidden md:block"
+        className="fixed top-0 left-0 w-1 h-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent pointer-events-none z-10000 hidden md:block"
       />
     </>
   );

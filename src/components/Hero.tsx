@@ -219,7 +219,7 @@ export default function Hero() {
         data-hero-scroll
         className="absolute bottom-14 left-1/2 -translate-x-1/2 z-20 hidden md:flex flex-col items-center gap-3"
       >
-        <div className="w-[1px] h-12 bg-gradient-to-b from-accent to-transparent" />
+        <div className="w-px h-12 bg-linear-to-b from-accent to-transparent" />
       </div>
 
       {/* Corner decorations */}

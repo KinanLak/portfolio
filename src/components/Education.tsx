@@ -74,7 +74,7 @@ export default function Education() {
       <div className="section-shell relative z-10">
         {/* Section tag */}
         <div className="flex items-center gap-4 mb-10">
-          <div className="w-16 h-[2px] bg-accent" />
+          <div className="w-16 h-0.5 bg-accent" />
           <span className="font-mono text-sm text-accent tracking-[0.3em] uppercase">
             Origins
           </span>
@@ -142,7 +142,7 @@ export default function Education() {
                 </div>
 
                 {/* Bottom accent bar on hover */}
-                <div className="absolute bottom-0 left-0 w-full h-[2px] bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
+                <div className="absolute bottom-0 left-0 w-full h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
               </div>
             </div>
           ))}

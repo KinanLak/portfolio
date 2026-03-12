@@ -78,7 +78,7 @@ export default function Skills() {
       <div className="section-shell relative z-10">
         {/* Section tag */}
         <div className="flex items-center gap-4 mb-10">
-          <div className="w-16 h-[2px] bg-accent" />
+          <div className="w-16 h-0.5 bg-accent" />
           <span className="font-mono text-sm text-accent tracking-[0.3em] uppercase">
             Stages
           </span>

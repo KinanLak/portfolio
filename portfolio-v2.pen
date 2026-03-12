@@ -5,13 +5,1534 @@
       "type": "frame",
       "id": "bi8Au",
       "x": 0,
-      "y": 0,
-      "name": "Frame",
-      "clip": true,
-      "width": 800,
-      "height": 600,
-      "fill": "#FFFFFF",
-      "layout": "none"
+      "y": -1,
+      "name": "Portfolio Page",
+      "width": 1440,
+      "fill": "#050505",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "FbC0V",
+          "name": "Sections A",
+          "width": "fill_container",
+          "fill": "#1A1A1A",
+          "layout": "vertical",
+          "gap": 32,
+          "padding": [
+            40,
+            48
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "r7sPz",
+              "name": "hero_section",
+              "width": "fill_container",
+              "fill": "#212121",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 24,
+              "padding": 32,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "J5XW8",
+                  "name": "heroSide",
+                  "fill": "#777777",
+                  "content": "FULL STACK DEVELOPER // 2025",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 11,
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "frame",
+                  "id": "iBdp8",
+                  "name": "heroNameWrap",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "DKum1",
+                      "name": "heroFirst",
+                      "fill": "#FFFFFF",
+                      "content": "KINAN",
+                      "lineHeight": 1,
+                      "fontFamily": "Oswald",
+                      "fontSize": 128,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "DVR8C",
+                      "name": "heroLast",
+                      "fill": "#FF6B35",
+                      "content": "LAKHDAR",
+                      "lineHeight": 1,
+                      "fontFamily": "Oswald",
+                      "fontSize": 128,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "BEPNC",
+                  "name": "heroMarq",
+                  "width": "fill_container",
+                  "fill": "#2D2D2D",
+                  "cornerRadius": 16,
+                  "gap": 16,
+                  "padding": [
+                    12,
+                    16
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Zz0Qj",
+                      "name": "marq1",
+                      "fill": "#FFFFFF",
+                      "content": "FULL STACK DEVELOPER",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "LQZWB",
+                      "name": "marq2",
+                      "fill": "#FF6B35",
+                      "content": "◆",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "oWHtI",
+                      "name": "marq3",
+                      "fill": "#FFFFFF",
+                      "content": "REACT NATIVE",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "hVHOB",
+                      "name": "marq4",
+                      "fill": "#FF6B35",
+                      "content": "◆",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "kYuId",
+                      "name": "marq5",
+                      "fill": "#FFFFFF",
+                      "content": "TYPESCRIPT",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "5ZMbc",
+                      "name": "marq6",
+                      "fill": "#FF6B35",
+                      "content": "◆",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "oCXoI",
+                      "name": "marq7",
+                      "fill": "#777777",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "NODE.JS  ◆  PYTHON  ◆  DOCKER  ◆  AWS  ◆  POSTGRESQL  ◆  FASTAPI  ◆  C/C++",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "BRuMg",
+                  "name": "heroBottom",
+                  "width": "fill_container",
+                  "padding": [
+                    8,
+                    0
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "end",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "pCnNd",
+                      "name": "heroInfo",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "072r8",
+                          "name": "heroTag",
+                          "fill": "#FFFFFF",
+                          "textGrowth": "fixed-width",
+                          "width": 600,
+                          "content": "Building innovative & high-performance web and mobile applications.",
+                          "lineHeight": 1.5,
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 13
+                        },
+                        {
+                          "type": "text",
+                          "id": "sofKB",
+                          "name": "heroLoc",
+                          "fill": "#777777",
+                          "content": "Based in Arles, France",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 12
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "oIFiX",
+                      "name": "heroLinks",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "m4loA",
+                          "name": "gitBtn",
+                          "fill": "#FF6B35",
+                          "cornerRadius": 16,
+                          "padding": [
+                            0,
+                            20
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "ggoJ4",
+                              "name": "gitTxt",
+                              "fill": "#0D0D0D",
+                              "content": "GITHUB",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "qhIuh",
+                          "name": "emailBtn",
+                          "fill": "#3D3D3D",
+                          "cornerRadius": 16,
+                          "padding": [
+                            0,
+                            20
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "l3ovX",
+                              "name": "emailTxt",
+                              "fill": "#FFFFFF",
+                              "content": "EMAIL  kinan.lakh@gmail.com",
+                              "fontFamily": "JetBrains Mono",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "zZqc1",
+              "name": "about_section",
+              "width": "fill_container",
+              "fill": "#212121",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 24,
+              "padding": 32,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "3eF4N",
+                  "name": "aboutTop",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "kgrm0",
+                      "name": "aboutTagRow",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 16,
+                          "id": "bRcxP",
+                          "name": "aboutTagDot",
+                          "fill": "#FF6B35",
+                          "width": 32,
+                          "height": 2
+                        },
+                        {
+                          "type": "text",
+                          "id": "XFd5M",
+                          "name": "aboutTag",
+                          "fill": "#FF6B35",
+                          "content": "MANIFESTO",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 12,
+                          "fontWeight": "600",
+                          "letterSpacing": 1
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "Rw3OI",
+                      "name": "aboutNum",
+                      "fill": "#3D3D3D",
+                      "content": "01",
+                      "lineHeight": 1,
+                      "fontFamily": "Oswald",
+                      "fontSize": 120,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "zw5e8",
+                  "name": "aboutTitle",
+                  "fill": "#FFFFFF",
+                  "content": "WHO I AM.",
+                  "lineHeight": 1,
+                  "fontFamily": "Oswald",
+                  "fontSize": 84,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "jROII",
+                  "name": "aboutBioRow",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "VI1w8",
+                      "name": "aboutBio1Wrap",
+                      "width": "fill_container",
+                      "fill": "#2D2D2D",
+                      "cornerRadius": 16,
+                      "layout": "vertical",
+                      "padding": 20,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "UQkDS",
+                          "name": "aboutBio1",
+                          "fill": "#FFFFFF",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Third-year Computer Science student at IUT d'Aix-Marseille (Arles), designing and developing web & mobile applications. Passionate about tech, I thrive on building real-world projects.",
+                          "lineHeight": 1.5,
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 13
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "lfRnc",
+                      "name": "aboutBio2Wrap",
+                      "width": "fill_container",
+                      "fill": "#2D2D2D",
+                      "cornerRadius": 16,
+                      "layout": "vertical",
+                      "padding": 20,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "WvIeL",
+                          "name": "aboutBio2",
+                          "fill": "#FFFFFF",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Volunteer firefighter since 2017 — I know how to handle pressure and work as a team. Active in my student association, where I sharpen my leadership and project management skills.",
+                          "lineHeight": 1.5,
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 13
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "RMnTL",
+                  "name": "factsWrap",
+                  "width": "fill_container",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "n77d3",
+                      "name": "fact1",
+                      "width": "fill_container",
+                      "fill": "#2D2D2D",
+                      "cornerRadius": 16,
+                      "layout": "vertical",
+                      "gap": 6,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "wsQU9",
+                          "name": "f1a",
+                          "fill": "#FF6B35",
+                          "content": "[location]",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 11,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "0PVKZ",
+                          "name": "f1b",
+                          "fill": "#FFFFFF",
+                          "content": "Arles, France",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 13
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "0q7Yg",
+                      "name": "fact2",
+                      "width": "fill_container",
+                      "fill": "#2D2D2D",
+                      "cornerRadius": 16,
+                      "layout": "vertical",
+                      "gap": 6,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "BL6XM",
+                          "name": "f2a",
+                          "fill": "#FF6B35",
+                          "content": "[focus]",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 11,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "zpCCh",
+                          "name": "f2b",
+                          "fill": "#FFFFFF",
+                          "content": "Web & Mobile",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 13
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Clv5O",
+                      "name": "fact3",
+                      "width": "fill_container",
+                      "fill": "#2D2D2D",
+                      "cornerRadius": 16,
+                      "layout": "vertical",
+                      "gap": 6,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Leknc",
+                          "name": "f3a",
+                          "fill": "#FF6B35",
+                          "content": "[status]",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 11,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "m0evT",
+                          "name": "f3b",
+                          "fill": "#FFFFFF",
+                          "content": "Open to opportunities",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 13
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "NXlCh",
+                      "name": "fact4",
+                      "width": "fill_container",
+                      "fill": "#2D2D2D",
+                      "cornerRadius": 16,
+                      "layout": "vertical",
+                      "gap": 6,
+                      "padding": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Oq6w2",
+                          "name": "f4a",
+                          "fill": "#FF6B35",
+                          "content": "[side]",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 11,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "2j3FZ",
+                          "name": "f4b",
+                          "fill": "#FFFFFF",
+                          "content": "Firefighter since 2017",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 13
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "dxK6y",
+                  "name": "aboutMarq",
+                  "fill": "#777777",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "// CODE WITH INTENTION  ◆  BUILD WITH CRAFT  ◆  SHIP WITH CONFIDENCE",
+                  "fontFamily": "JetBrains Mono",
+                  "fontSize": 12,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "16OjZ",
+              "name": "experience_section",
+              "width": "fill_container",
+              "fill": "#212121",
+              "cornerRadius": 16,
+              "layout": "vertical",
+              "gap": 24,
+              "padding": 32,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "FW2cj",
+                  "name": "expTop",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "txSry",
+                      "name": "expTagRow",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 16,
+                          "id": "zYUqP",
+                          "name": "expTagDot",
+                          "fill": "#FF6B35",
+                          "width": 32,
+                          "height": 2
+                        },
+                        {
+                          "type": "text",
+                          "id": "se56g",
+                          "name": "expTag",
+                          "fill": "#FF6B35",
+                          "content": "LINEUP",
+                          "fontFamily": "JetBrains Mono",
+                          "fontSize": 12,
+                          "fontWeight": "600",
+                          "letterSpacing": 1
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "pLa6P",
+                      "name": "expNum",
+                      "fill": "#3D3D3D",
+                      "content": "02",
+                      "lineHeight": 1,
+                      "fontFamily": "Oswald",
+                      "fontSize": 120,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "x1l17",
+                  "name": "expTitle",
+                  "fill": "#FFFFFF",
+                  "content": "EXPERIENCE.",
+                  "lineHeight": 1,
+                  "fontFamily": "Oswald",
+                  "fontSize": 84,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "aV1X0",
+                  "name": "expCard1",
+                  "width": "fill_container",
+                  "fill": "#2D2D2D",
+                  "cornerRadius": 16,
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Wx1od",
+                      "name": "exp1h",
+                      "fill": "#FF6B35",
+                      "content": "01  //  Sept 2023 — Present  //  Arles, France",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "45l9A",
+                      "name": "exp1r",
+                      "fill": "#FFFFFF",
+                      "content": "Computer Science Student",
+                      "lineHeight": 1,
+                      "fontFamily": "Oswald",
+                      "fontSize": 36,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "F4dSz",
+                      "name": "exp1o",
+                      "fill": "#777777",
+                      "content": "IUT d'Aix-Marseille — Arles",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 13
+                    },
+                    {
+                      "type": "text",
+                      "id": "j66HK",
+                      "name": "exp1l",
+                      "fill": "#FFFFFF",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "/ Application design, development & validation\n/ Mobile app for thesis evaluation — React Native, Expo, TypeScript, PostgreSQL\n/ GPS navigation software with Qt/C++ GUI\n/ Password manager built with Java Swing",
+                      "lineHeight": 1.5,
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 13
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "3ZTEV",
+                  "name": "expCard2",
+                  "width": "fill_container",
+                  "fill": "#2D2D2D",
+                  "cornerRadius": 16,
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "1hWN6",
+                      "name": "exp2h",
+                      "fill": "#FF6B35",
+                      "content": "02  //  2017 — Present  //  Bouches-du-Rhône & Yvelines, France",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ZTuyx",
+                      "name": "exp2r",
+                      "fill": "#FFFFFF",
+                      "content": "Volunteer Firefighter",
+                      "lineHeight": 1,
+                      "fontFamily": "Oswald",
+                      "fontSize": 36,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "RC1nu",
+                      "name": "exp2o",
+                      "fill": "#777777",
+                      "content": "SDIS 13 & 78",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 13
+                    },
+                    {
+                      "type": "text",
+                      "id": "Wjiee",
+                      "name": "exp2l",
+                      "fill": "#FFFFFF",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "/ Emergency rescue & fire response operations\n/ Stress management in high-stakes situations\n/ Team coordination under pressure",
+                      "lineHeight": 1.5,
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 13
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "O8Xcg",
+                  "name": "expCard3",
+                  "width": "fill_container",
+                  "fill": "#2D2D2D",
+                  "cornerRadius": 16,
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "lpHAb",
+                      "name": "exp3h",
+                      "fill": "#FF6B35",
+                      "content": "03  //  Dec 2023 — Present  //  Arles, France",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "e3rdL",
+                      "name": "exp3r",
+                      "fill": "#FFFFFF",
+                      "content": "Vice-President",
+                      "lineHeight": 1,
+                      "fontFamily": "Oswald",
+                      "fontSize": 36,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ifwrV",
+                      "name": "exp3o",
+                      "fill": "#777777",
+                      "content": "Student Association — IUT d'Arles",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 13
+                    },
+                    {
+                      "type": "text",
+                      "id": "sBopD",
+                      "name": "exp3l",
+                      "fill": "#FFFFFF",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "/ Event planning & organization\n/ Student body representation\n/ Treasury management & budget oversight\n/ Previously served as Deputy Treasurer (Oct–Dec 2024)",
+                      "lineHeight": 1.5,
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 13
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "oTQ9A",
+                  "name": "expCard4",
+                  "width": "fill_container",
+                  "fill": "#2D2D2D",
+                  "cornerRadius": 16,
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "YE9XW",
+                      "name": "exp4h",
+                      "fill": "#FF6B35",
+                      "content": "04  //  May 2023  //  Aix-en-Provence, France",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 11,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "LZ1QC",
+                      "name": "exp4r",
+                      "fill": "#FFFFFF",
+                      "content": "Intern",
+                      "lineHeight": 1,
+                      "fontFamily": "Oswald",
+                      "fontSize": 36,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "gfH5w",
+                      "name": "exp4o",
+                      "fill": "#777777",
+                      "content": "Les Restos du Cœur",
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 13
+                    },
+                    {
+                      "type": "text",
+                      "id": "pb32b",
+                      "name": "exp4l",
+                      "fill": "#FFFFFF",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "/ Beneficiary reception & administrative management\n/ Inventory management & product shelving",
+                      "lineHeight": 1.5,
+                      "fontFamily": "JetBrains Mono",
+                      "fontSize": 13
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "bpC3M",
+          "name": "Sections B",
+          "width": "fill_container",
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "SnFEk",
+              "name": "Skills Section",
+              "width": "fill_container",
+              "fill": "#050505",
+              "layout": "vertical",
+              "gap": 28,
+              "padding": [
+                80,
+                64
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "NlcVi",
+                  "name": "skillsNum",
+                  "fill": "#141414",
+                  "content": "03",
+                  "fontFamily": "Oswald",
+                  "fontSize": 220,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "0MX5z",
+                  "name": "skillsMarqueeTop",
+                  "width": "fill_container",
+                  "fill": "#0C0C0C",
+                  "stroke": {
+                    "thickness": {
+                      "top": 2,
+                      "bottom": 2
+                    },
+                    "fill": "#FF6600"
+                  },
+                  "padding": [
+                    12,
+                    16
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "AXExX",
+                      "name": "skillsMarqueeTopTxt",
+                      "fill": "#FF6600",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "HTML/CSS/JS × REACT NATIVE × QT × EXPRESS × FLASK × FASTAPI × SQL × POSTGRESQL × C × C++ × TYPESCRIPT × PYTHON × JAVA × GIT × GITHUB × DOCKER × AWS × NGINX",
+                      "fontFamily": "Bebas Neue",
+                      "fontSize": 40,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "piLLQ",
+                  "name": "skillsTagRow",
+                  "gap": 16,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "UmEfm",
+                      "name": "skillsTagLine",
+                      "fill": "#FF6600",
+                      "width": 64,
+                      "height": 2
+                    },
+                    {
+                      "type": "text",
+                      "id": "6mpZu",
+                      "name": "skillsTag",
+                      "fill": "#FF6600",
+                      "content": "STAGES",
+                      "fontFamily": "Space Mono",
+                      "fontSize": 14,
+                      "fontWeight": "600",
+                      "letterSpacing": 4
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "4Rclb",
+                  "name": "skillsTitle",
+                  "fill": "#EDEDED",
+                  "content": "Skills.",
+                  "lineHeight": 0.85,
+                  "fontFamily": "Bebas Neue",
+                  "fontSize": 172,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "2Tkox",
+                  "name": "skillsBody",
+                  "fill": "#C0C0C0",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "01 FRONTEND DEVELOPMENT — Front Stage — HTML/CSS/JS, React Native, Qt\nBuilding reactive, modern user interfaces for web and mobile applications.\n\n02 BACKEND DEVELOPMENT — Engine Room — Express, Flask, FastAPI\nDesigning and implementing robust, scalable servers and APIs.\n\n03 DATABASES — The Vault — SQL, PostgreSQL\nEfficient data management with relational database systems.\n\n04 PROGRAMMING LANGUAGES — Main Stage — C, C++, JavaScript/TypeScript, Python, Java\nMastery of multiple languages to adapt to diverse development needs.\n\n05 VERSION CONTROL — Control Tower — Git, GitHub\n06 DEVOPS — Backstage — Docker, GitHub Actions, Linux\n07 CLOUD & HOSTING — The Cloud Stage — AWS EC2, S3, NGINX\n08 LANGUAGES — World Stage — French (native), English (professional)\n09 METHODOLOGIES & TOOLS — Crew Area — Agile, Jira, Office Suite",
+                  "lineHeight": 1.7,
+                  "fontFamily": "Space Mono",
+                  "fontSize": 20,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "ujyZb",
+                  "name": "skillsMarqueeBottom",
+                  "width": "fill_container",
+                  "fill": "#0C0C0C",
+                  "stroke": {
+                    "thickness": {
+                      "top": 2,
+                      "bottom": 2
+                    },
+                    "fill": "#FF6600"
+                  },
+                  "padding": [
+                    12,
+                    16
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "WGXEf",
+                      "name": "skillsMarqueeBottomTxt",
+                      "fill": "#FF660055",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "AWS × DOCKER × GITHUB ACTIONS × LINUX × AGILE × JIRA × OFFICE SUITE × FRENCH × ENGLISH × FASTAPI × POSTGRESQL × REACT NATIVE",
+                      "fontFamily": "Bebas Neue",
+                      "fontSize": 40,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "O13Eu",
+              "name": "Projects Section",
+              "width": "fill_container",
+              "fill": "#0C0C0C",
+              "layout": "vertical",
+              "gap": 28,
+              "padding": [
+                90,
+                64
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "eTFVC",
+                  "name": "projNum",
+                  "fill": "#141414",
+                  "content": "04",
+                  "fontFamily": "Oswald",
+                  "fontSize": 220,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "6x4PA",
+                  "name": "projTagRow",
+                  "gap": 16,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "iGfW1",
+                      "name": "projTagLine",
+                      "fill": "#FF6600",
+                      "width": 64,
+                      "height": 2
+                    },
+                    {
+                      "type": "text",
+                      "id": "8ZZrU",
+                      "name": "projTag",
+                      "fill": "#FF6600",
+                      "content": "HEADLINERS",
+                      "fontFamily": "Space Mono",
+                      "fontSize": 14,
+                      "fontWeight": "600",
+                      "letterSpacing": 4
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "wNmfh",
+                  "name": "projTitleRow",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "end",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t7K90",
+                      "name": "projTitle",
+                      "fill": "#EDEDED",
+                      "content": "Projects.",
+                      "lineHeight": 0.85,
+                      "fontFamily": "Bebas Neue",
+                      "fontSize": 172,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "XNiWb",
+                      "name": "projCount",
+                      "fill": "#FF6600",
+                      "content": "(04)",
+                      "fontFamily": "Bebas Neue",
+                      "fontSize": 108,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Mn72y",
+                  "name": "projList",
+                  "width": "fill_container",
+                  "stroke": {
+                    "thickness": {
+                      "top": 2,
+                      "bottom": 2
+                    },
+                    "fill": "#1E1E1E"
+                  },
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "xylbv",
+                      "name": "projItemA",
+                      "fill": "#EDEDED",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "01 PAPAYA  [FEATURED]\nSocial network for video game reviews & experiences.\nA community-driven platform where gamers share reviews, rate games, and connect through shared gaming experiences.\nTags: Social Network / Gaming / Reviews",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Space Mono",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "GNk6O",
+                      "name": "projItemB",
+                      "fill": "#C0C0C0",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "\n02 BET4FREE  [FEATURED]\nFree sports betting platform with a social twist.\nA unique platform combining free sports betting with social networking features, putting the community first.\nTags: Sports / Social / Platform\n\n03 LES MOUETTES  [FEATURED]\nBooking & payment app for a children's vacation club.\nMobile application enabling seamless reservation and payment management for a children's holiday club.\nTags: Mobile App / Booking / Payments\n\n04 FULL STACK PRACTICE\nEnd-to-end development from specs to deployment.\nWriting technical specifications, designing database schemas, developing APIs, server administration, and applying GDPR compliance standards.\nTags: Full Stack / API / DevOps / GDPR",
+                      "lineHeight": 1.6,
+                      "fontFamily": "Space Mono",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "wR4kj",
+              "name": "Education Section",
+              "width": "fill_container",
+              "fill": "#050505",
+              "layout": "vertical",
+              "gap": 28,
+              "padding": [
+                90,
+                64
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "RmBhn",
+                  "name": "eduNum",
+                  "fill": "#141414",
+                  "content": "05",
+                  "fontFamily": "Oswald",
+                  "fontSize": 220,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "GJso1",
+                  "name": "eduTagRow",
+                  "gap": 16,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "oZqUh",
+                      "name": "eduTagLine",
+                      "fill": "#FF6600",
+                      "width": 64,
+                      "height": 2
+                    },
+                    {
+                      "type": "text",
+                      "id": "cl54s",
+                      "name": "eduTag",
+                      "fill": "#FF6600",
+                      "content": "ORIGINS",
+                      "fontFamily": "Space Mono",
+                      "fontSize": 14,
+                      "fontWeight": "600",
+                      "letterSpacing": 4
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "oPv5b",
+                  "name": "eduTitle",
+                  "fill": "#EDEDED",
+                  "content": "Education.",
+                  "lineHeight": 0.85,
+                  "fontFamily": "Bebas Neue",
+                  "fontSize": 172,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "sAtDL",
+                  "name": "eduTimeline",
+                  "width": "fill_container",
+                  "stroke": {
+                    "thickness": {
+                      "top": 1,
+                      "bottom": 1
+                    },
+                    "fill": "#1E1E1E"
+                  },
+                  "layout": "vertical",
+                  "gap": 18,
+                  "padding": [
+                    20,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "pscKa",
+                      "name": "eduItem1",
+                      "fill": "#EDEDED",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "01  SEPT 2023 — PRESENT\nB.Sc. in Computer Science (BUT Informatique)\nIUT d'Aix-Marseille — Arles\n/ Application design, development & validation\n/ Team projects using Agile methodology\n/ Specialization in web & mobile development",
+                      "lineHeight": 1.7,
+                      "fontFamily": "Space Mono",
+                      "fontSize": 19,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "l7z7d",
+                      "name": "eduItem2",
+                      "fill": "#C0C0C0",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "02  SEPT 2021 — JUNE 2023\nEngineering Preparatory Program\nECE Paris — Engineering School\n/ Mathematics, Physics\n/ Systems & software programming in C\n/ Digital electronics",
+                      "lineHeight": 1.7,
+                      "fontFamily": "Space Mono",
+                      "fontSize": 19,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "mg4vY",
+                      "name": "eduItem3",
+                      "fill": "#C0C0C0",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "03  SEPT 2018 — JUNE 2021\nBaccalauréat — Mathematics & Computer Science\nLycée Alain — Le Vésinet, Yvelines\n/ Advanced Mathematics option\n/ NSI specialty (Computer Science & Digital Sciences)",
+                      "lineHeight": 1.7,
+                      "fontFamily": "Space Mono",
+                      "fontSize": 19,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "wDOXo",
+                  "name": "eduMarquee",
+                  "width": "fill_container",
+                  "stroke": {
+                    "thickness": {
+                      "top": 1,
+                      "bottom": 1
+                    },
+                    "fill": "#1E1E1E"
+                  },
+                  "padding": [
+                    10,
+                    16
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "cZUmM",
+                      "name": "eduMarqueeText",
+                      "fill": "#1E1E1E",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "NEVER STOP LEARNING — STAY CURIOUS — BUILD THE FUTURE — NEVER STOP LEARNING — STAY CURIOUS — BUILD THE FUTURE",
+                      "fontFamily": "Bebas Neue",
+                      "fontSize": 34,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "zCzgR",
+              "name": "Contact Section",
+              "width": "fill_container",
+              "fill": "#050505",
+              "layout": "vertical",
+              "gap": 28,
+              "padding": [
+                90,
+                64
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "HTbIa",
+                  "name": "contactNum",
+                  "fill": "#141414",
+                  "content": "06",
+                  "fontFamily": "Oswald",
+                  "fontSize": 220,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "U5FsS",
+                  "name": "contactTagRow",
+                  "gap": 16,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "9M8BM",
+                      "name": "contactTagLine",
+                      "fill": "#FF6600",
+                      "width": 64,
+                      "height": 2
+                    },
+                    {
+                      "type": "text",
+                      "id": "OFk1c",
+                      "name": "contactTag",
+                      "fill": "#FF6600",
+                      "content": "GUEST LIST",
+                      "fontFamily": "Space Mono",
+                      "fontSize": 14,
+                      "fontWeight": "600",
+                      "letterSpacing": 4
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "QiTJq",
+                  "name": "contactTitle",
+                  "fill": "#EDEDED",
+                  "content": "Get In\nTouch.",
+                  "lineHeight": 0.82,
+                  "fontFamily": "Bebas Neue",
+                  "fontSize": 188,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "GgvRP",
+                  "name": "contactCta",
+                  "fill": "#C0C0C0",
+                  "textGrowth": "fixed-width",
+                  "width": 920,
+                  "content": "Got a project in mind? Looking for a developer who ships fast and cares about craft? Let's talk. Drop me a line and I'll get back to you within 24 hours.",
+                  "lineHeight": 1.9,
+                  "fontFamily": "Space Mono",
+                  "fontSize": 24,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "rE8Tm",
+                  "name": "contactGrid",
+                  "width": "fill_container",
+                  "stroke": {
+                    "thickness": {
+                      "top": 1,
+                      "bottom": 1
+                    },
+                    "fill": "#1E1E1E"
+                  },
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "KWT0q",
+                      "name": "contactCol1",
+                      "fill": "#EDEDED",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "EMAIL\nkinan.lakh@gmail.com",
+                      "lineHeight": 1.8,
+                      "fontFamily": "Space Mono",
+                      "fontSize": 16,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "6A0F8",
+                      "name": "contactCol2",
+                      "fill": "#EDEDED",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "PHONE\n+33 6 69 52 78 33",
+                      "lineHeight": 1.8,
+                      "fontFamily": "Space Mono",
+                      "fontSize": 16,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "VA0HP",
+                      "name": "contactCol3",
+                      "fill": "#EDEDED",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "LOCATION\nArles, France",
+                      "lineHeight": 1.8,
+                      "fontFamily": "Space Mono",
+                      "fontSize": 16,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ZfCwm",
+                      "name": "contactCol4",
+                      "fill": "#EDEDED",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "GITHUB\nkinanlakhdar",
+                      "lineHeight": 1.8,
+                      "fontFamily": "Space Mono",
+                      "fontSize": 16,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "Zny49",
+                  "name": "formTitle",
+                  "fill": "#FF6600",
+                  "content": "SEND A MESSAGE",
+                  "fontFamily": "Space Mono",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                  "letterSpacing": 4
+                },
+                {
+                  "type": "text",
+                  "id": "2nbGq",
+                  "name": "formFields",
+                  "fill": "#C0C0C0",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "NAME\nYour name\n\nEMAIL\nyour@email.com\n\nSUBJECT\nWhat's this about?\n\nMESSAGE\nTell me about your project...",
+                  "lineHeight": 1.8,
+                  "fontFamily": "Space Mono",
+                  "fontSize": 20,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "WkJRj",
+                  "name": "sendBtn",
+                  "fill": "#FF6600",
+                  "padding": [
+                    18,
+                    32
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "tkDR8",
+                      "name": "sendBtnText",
+                      "fill": "#050505",
+                      "content": "SEND MESSAGE",
+                      "fontFamily": "Bebas Neue",
+                      "fontSize": 42,
+                      "fontWeight": "700",
+                      "letterSpacing": 2
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "uvFHA",
+                  "name": "contactMarquee",
+                  "width": "fill_container",
+                  "stroke": {
+                    "thickness": {
+                      "top": 1,
+                      "bottom": 1
+                    },
+                    "fill": "#1E1E1E"
+                  },
+                  "padding": [
+                    10,
+                    16
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "E5Ums",
+                      "name": "contactMarqueeTxt",
+                      "fill": "#1E1E1E",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "LET'S BUILD SOMETHING GREAT — OPEN TO OPPORTUNITIES — AVAILABLE NOW — LET'S BUILD SOMETHING GREAT",
+                      "fontFamily": "Bebas Neue",
+                      "fontSize": 34,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ZsOUA",
+                  "name": "footerRow",
+                  "width": "fill_container",
+                  "stroke": {
+                    "thickness": {
+                      "top": 1
+                    },
+                    "fill": "#1E1E1E"
+                  },
+                  "padding": [
+                    20,
+                    0
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "iqBFd",
+                      "name": "footerLeft",
+                      "fill": "#666666",
+                      "content": "© 2026 KINAN LAKHDAR",
+                      "fontFamily": "Bebas Neue",
+                      "fontSize": 28,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Ulk6k",
+                      "name": "footerRight",
+                      "fill": "#666666",
+                      "content": "Designed & built with passion",
+                      "fontFamily": "Space Mono",
+                      "fontSize": 12,
+                      "fontWeight": "normal",
+                      "letterSpacing": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

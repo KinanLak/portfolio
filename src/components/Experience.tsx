@@ -51,15 +51,15 @@ export default function Experience() {
       className="relative bg-black-light py-section-sm md:py-section overflow-hidden"
     >
       {/* Giant background number */}
-      <div className="absolute -top-8 left-4 md:left-12 overflow-hidden">
+      <div className="absolute -top-8 left-6 md:left-16 overflow-hidden">
         <span className="font-display text-[clamp(12rem,30vw,28rem)] text-dark leading-none select-none block">
           02
         </span>
       </div>
 
-      <div className="relative z-10 px-4 md:px-8 lg:px-12 max-w-7xl mx-auto">
+      <div className="section-shell relative z-10">
         {/* Section tag */}
-        <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center gap-4 mb-10">
           <div className="w-16 h-[2px] bg-accent" />
           <span className="font-mono text-sm text-accent tracking-[0.3em] uppercase">
             Lineup
@@ -67,7 +67,7 @@ export default function Experience() {
         </div>
 
         {/* Title */}
-        <div data-exp-title className="mb-20 md:mb-32">
+        <div data-exp-title className="mb-24 md:mb-36">
           <h2 className="font-display text-[clamp(4rem,12vw,11rem)] text-white-pure leading-[0.85]">
             {"Experience".split("").map((char, i) => (
               <span key={i} className="overflow-hidden inline-block">
@@ -90,9 +90,9 @@ export default function Experience() {
               }}
               className="group border-t border-dark-light"
             >
-              <div className="py-10 md:py-16 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12">
+              <div className="py-12 md:py-20 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
                 {/* Left: number + period */}
-                <div className="lg:col-span-3 flex items-start gap-4 lg:flex-col lg:gap-4">
+                <div className="lg:col-span-3 flex items-start gap-4 lg:flex-col lg:gap-5">
                   <span className="font-display text-5xl md:text-7xl text-dark-light group-hover:text-accent/30 transition-colors duration-500">
                     {String(i + 1).padStart(2, "0")}
                   </span>
@@ -108,7 +108,7 @@ export default function Experience() {
 
                 {/* Center: role + org */}
                 <div className="lg:col-span-5">
-                  <h3 className="font-display text-3xl md:text-5xl text-white-pure group-hover:text-accent transition-colors duration-300 mb-2">
+                  <h3 className="font-display text-3xl md:text-5xl text-white-pure group-hover:text-accent transition-colors duration-300 mb-3">
                     {item.role}
                   </h3>
                   <p className="font-mono text-base md:text-lg text-grey">
@@ -118,7 +118,7 @@ export default function Experience() {
 
                 {/* Right: highlights */}
                 <div className="lg:col-span-4">
-                  <ul className="space-y-3">
+                  <ul className="space-y-4">
                     {item.highlights.map((highlight, j) => (
                       <li
                         key={j}

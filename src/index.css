@@ -24,8 +24,10 @@
   --font-mono: "Space Mono", "Courier New", monospace;
 
   /* Spacing — Generous */
-  --spacing-section: 12rem;
-  --spacing-section-sm: 7rem;
+  --spacing-section: 10rem;
+  --spacing-section-sm: 5rem;
+  --spacing-content: 6rem;
+  --spacing-content-sm: 3.5rem;
 }
 
 /* ============================================
@@ -47,10 +49,21 @@ html {
 body {
   font-family: var(--font-mono);
   font-size: 16px;
-  line-height: 1.8;
+  line-height: 1.85;
+  letter-spacing: 0.01em;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.section-shell {
+  width: min(100%, 120rem);
+  margin-inline: auto;
+  padding-inline: clamp(3rem, 8vw, 10rem);
+}
+
+.marquee-viewport {
+  padding-inline: clamp(2rem, 6vw, 8rem);
 }
 
 ::selection {
@@ -102,12 +115,14 @@ body {
 
 .marquee-track {
   display: flex;
+  gap: 3rem;
   width: max-content;
   animation: marquee-scroll 20s linear infinite;
 }
 
 .marquee-track-reverse {
   display: flex;
+  gap: 3rem;
   width: max-content;
   animation: marquee-scroll 20s linear infinite reverse;
 }
@@ -184,6 +199,12 @@ body {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
   opacity: 0.3;
+}
+
+/* Subtle separation between major sections */
+main > section + section {
+  border-top: 1px solid var(--color-dark-light);
+  margin-top: 3rem;
 }
 
 /* ============================================

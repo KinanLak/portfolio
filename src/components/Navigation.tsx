@@ -44,7 +44,7 @@ export default function Navigation() {
           : "opacity-0 translate-x-4 pointer-events-none"
       }`}
     >
-      <div className="flex flex-col items-end gap-5">
+      <div className="flex flex-col items-end gap-6">
         {navigationData.sections.map((section) => {
           const isActive = activeSection === section.id;
           return (

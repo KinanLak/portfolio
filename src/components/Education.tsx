@@ -62,7 +62,7 @@ export default function Education() {
       className="relative bg-black py-section-sm md:py-section overflow-hidden"
     >
       {/* Giant section number */}
-      <div className="absolute -top-8 right-4 md:right-12 overflow-hidden">
+      <div className="absolute -top-8 right-6 md:right-16 overflow-hidden">
         <span
           data-edu-num
           className="font-display text-[clamp(12rem,30vw,28rem)] text-dark leading-none select-none block"
@@ -71,9 +71,9 @@ export default function Education() {
         </span>
       </div>
 
-      <div className="relative z-10 px-4 md:px-8 lg:px-12">
+      <div className="section-shell relative z-10">
         {/* Section tag */}
-        <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center gap-4 mb-10">
           <div className="w-16 h-[2px] bg-accent" />
           <span className="font-mono text-sm text-accent tracking-[0.3em] uppercase">
             Origins
@@ -81,7 +81,7 @@ export default function Education() {
         </div>
 
         {/* Title — massive broken words */}
-        <div data-edu-title className="mb-16 md:mb-24">
+        <div data-edu-title className="mb-20 md:mb-28">
           <h2 className="font-display text-[clamp(4rem,12vw,11rem)] text-white-pure leading-[0.85]">
             {"Education".split("").map((char, i) => (
               <span key={i} className="overflow-hidden inline-block">
@@ -103,7 +103,7 @@ export default function Education() {
               className="group relative border-t border-dark-light first:border-t-0"
             >
               {/* Card inner */}
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-10 md:py-16 px-0 md:px-4 transition-colors duration-500 group-hover:bg-dark/50">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 py-12 md:py-20 px-2 md:px-6 transition-colors duration-500 group-hover:bg-dark/50">
                 {/* Left column: giant index + period */}
                 <div className="md:col-span-2 flex items-start gap-4 md:flex-col md:gap-2">
                   <span className="font-display text-[clamp(3rem,8vw,6rem)] text-dark-light leading-none group-hover:text-accent/30 transition-colors duration-500">
@@ -116,7 +116,7 @@ export default function Education() {
 
                 {/* Center column: degree + institution */}
                 <div className="md:col-span-6">
-                  <h3 className="font-display text-[clamp(1.8rem,4vw,3.5rem)] text-white-pure leading-[0.95] group-hover:text-accent transition-colors duration-300 mb-3">
+                  <h3 className="font-display text-[clamp(1.8rem,4vw,3.5rem)] text-white-pure leading-[0.95] group-hover:text-accent transition-colors duration-300 mb-4">
                     {item.degree}
                   </h3>
                   <p className="font-mono text-sm md:text-base text-grey tracking-wide">
@@ -126,7 +126,7 @@ export default function Education() {
 
                 {/* Right column: highlights */}
                 <div className="md:col-span-4 flex flex-col justify-center">
-                  <ul className="space-y-3">
+                  <ul className="space-y-4">
                     {item.highlights.map((highlight, j) => (
                       <li
                         key={j}
@@ -153,14 +153,14 @@ export default function Education() {
       </div>
 
       {/* Divider marquee */}
-      <div className="mt-section-sm md:mt-section border-y border-dark-light py-3">
+      <div className="mt-content-sm md:mt-content border-y border-dark-light py-4">
         <Marquee speed={35}>
           {Array(6)
             .fill(null)
             .map((_, i) => (
               <span
                 key={i}
-                className="font-display text-xl md:text-2xl text-dark-light mx-6 md:mx-10 flex items-center gap-6 md:gap-10 select-none"
+                className="font-display text-xl md:text-2xl text-dark-light flex items-center gap-6 md:gap-10 select-none"
               >
                 NEVER STOP LEARNING &mdash; STAY CURIOUS &mdash; BUILD THE
                 FUTURE

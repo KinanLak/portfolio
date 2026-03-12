@@ -121,7 +121,7 @@ export default function Hero() {
       </div>
 
       {/* Vertical side label */}
-      <div className="absolute left-6 top-1/2 -translate-y-1/2 z-20 hidden lg:block">
+      <div className="absolute left-8 top-1/2 -translate-y-1/2 z-20 hidden lg:block">
         <span className="text-vertical font-mono text-[11px] text-grey tracking-[0.5em] uppercase">
           Full Stack Developer &mdash; 2025
         </span>
@@ -130,7 +130,7 @@ export default function Hero() {
       {/* Main content — Name fills the viewport */}
       <div className="relative z-10 w-full">
         {/* THE NAME — Absolutely massive */}
-        <div className="px-4 md:px-8 lg:px-12">
+        <div className="section-shell">
           <h1 className="font-display leading-[0.82] tracking-tight">
             <div className="overflow-hidden">
               <span
@@ -154,7 +154,7 @@ export default function Hero() {
         </div>
 
         {/* Ticker / Marquee — festival style */}
-        <div data-hero-marquee className="mt-8 md:mt-12 border-y border-dark-light py-4">
+        <div data-hero-marquee className="mt-10 md:mt-14 border-y border-dark-light py-5">
           <Marquee speed={25}>
             {[
               "FULL STACK DEVELOPER",
@@ -170,7 +170,7 @@ export default function Hero() {
             ].map((item) => (
               <span
                 key={item}
-                className="font-display text-2xl md:text-4xl text-grey mx-6 md:mx-10 flex items-center gap-6 md:gap-10"
+                className="font-display text-2xl md:text-4xl text-grey flex items-center gap-6 md:gap-10"
               >
                 {item}
                 <span className="text-accent text-lg">&diams;</span>
@@ -181,47 +181,49 @@ export default function Hero() {
       </div>
 
       {/* Bottom bar — info */}
-      <div
-        data-hero-info
-        className="absolute bottom-12 left-4 md:left-8 lg:left-12 right-4 md:right-8 lg:right-12 z-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-6"
-      >
-        <div className="flex flex-col gap-1">
-          <span className="font-mono text-sm md:text-base text-white">
-            {profileData.tagline}
-          </span>
-          <span className="font-mono text-xs text-grey">
-            Based in {profileData.location}
-          </span>
-        </div>
+      <div className="absolute inset-x-0 bottom-14 z-20">
+        <div
+          data-hero-info
+          className="section-shell flex flex-col md:flex-row justify-between items-start md:items-end gap-8"
+        >
+          <div className="flex flex-col gap-1">
+            <span className="font-mono text-sm md:text-base text-white">
+              {profileData.tagline}
+            </span>
+            <span className="font-mono text-xs text-grey">
+              Based in {profileData.location}
+            </span>
+          </div>
 
-        <div className="flex items-center gap-8">
-          <a
-            href={profileData.social.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-mono text-sm text-white hover:text-accent transition-colors duration-300 uppercase tracking-widest border-b-2 border-accent pb-1"
-          >
-            GitHub
-          </a>
-          <a
-            href={`mailto:${profileData.email}`}
-            className="font-mono text-sm text-white hover:text-accent transition-colors duration-300 uppercase tracking-widest border-b-2 border-accent pb-1"
-          >
-            Email
-          </a>
+          <div className="flex items-center gap-10">
+            <a
+              href={profileData.social.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-sm text-white hover:text-accent transition-colors duration-300 uppercase tracking-widest border-b-2 border-accent pb-1.5"
+            >
+              GitHub
+            </a>
+            <a
+              href={`mailto:${profileData.email}`}
+              className="font-mono text-sm text-white hover:text-accent transition-colors duration-300 uppercase tracking-widest border-b-2 border-accent pb-1.5"
+            >
+              Email
+            </a>
+          </div>
         </div>
       </div>
 
       {/* Scroll indicator */}
       <div
         data-hero-scroll
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 hidden md:flex flex-col items-center gap-3"
+        className="absolute bottom-14 left-1/2 -translate-x-1/2 z-20 hidden md:flex flex-col items-center gap-3"
       >
         <div className="w-[1px] h-12 bg-gradient-to-b from-accent to-transparent" />
       </div>
 
       {/* Corner decorations */}
-      <div className="absolute top-6 right-6 md:top-8 md:right-8 z-20 font-mono text-[10px] text-grey/40 text-right leading-relaxed hidden md:block">
+      <div className="absolute top-8 right-8 md:top-10 md:right-10 z-20 font-mono text-[10px] text-grey/40 text-right leading-relaxed hidden md:block">
         PORTFOLIO<br />N&deg;002<br />2025
       </div>
     </section>

@@ -47,7 +47,7 @@ function App() {
       <Navigation />
 
       {/* Sections */}
-      <main className="cursor-none md:cursor-none">
+      <main className="cursor-none md:cursor-none overflow-x-hidden">
         <Hero />
         <About />
         <Experience />

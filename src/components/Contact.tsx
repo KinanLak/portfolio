@@ -75,10 +75,10 @@ export default function Contact() {
         x: -40,
         opacity: 0,
         duration: 0.6,
-        stagger: 0.1,
+        stagger: 0.12,
         ease: "power3.out",
         scrollTrigger: {
-          trigger: "[data-contact-info-grid]",
+          trigger: "[data-contact-sidebar]",
           start: "top 85%",
           toggleActions: "play none none reverse",
         },
@@ -100,6 +100,25 @@ export default function Contact() {
     );
   };
 
+  const contactInfo = [
+    {
+      label: "Email",
+      value: profileData.email,
+      href: `mailto:${profileData.email}`,
+    },
+    {
+      label: "Phone",
+      value: profileData.phone,
+      href: `tel:${profileData.phone}`,
+    },
+    { label: "Location", value: profileData.location },
+    {
+      label: "Github",
+      value: "kinanlakhdar",
+      href: profileData.social.github,
+    },
+  ];
+
   return (
     <section
       id="contact"
@@ -107,7 +126,7 @@ export default function Contact() {
       className="relative bg-black py-section-sm md:py-section overflow-hidden"
     >
       {/* Giant section number */}
-      <div className="absolute -top-8 right-4 md:right-12 overflow-hidden">
+      <div className="absolute -top-8 right-6 md:right-16 overflow-hidden">
         <span
           data-contact-num
           className="font-display text-[clamp(12rem,30vw,28rem)] text-dark leading-none select-none block"
@@ -116,17 +135,17 @@ export default function Contact() {
         </span>
       </div>
 
-      <div className="relative z-10 px-4 md:px-8 lg:px-12">
+      <div className="section-shell relative z-10">
         {/* Section tag */}
-        <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center gap-4 mb-10">
           <div className="w-16 h-[2px] bg-accent" />
           <span className="font-mono text-sm text-accent tracking-[0.3em] uppercase">
             Guest List
           </span>
         </div>
 
-        {/* Title — massive, broken across lines */}
-        <div data-contact-title className="mb-12 md:mb-20">
+        {/* Title */}
+        <div data-contact-title className="mb-8 md:mb-14">
           <h2 className="font-display text-[clamp(4rem,14vw,13rem)] text-white-pure leading-[0.85]">
             {"Get In".split(" ").map((word, i) => (
               <span key={i} className="overflow-hidden inline-block mr-[0.2em]">
@@ -148,150 +167,147 @@ export default function Contact() {
         </div>
 
         {/* CTA statement */}
-        <div data-contact-cta className="mb-16 md:mb-24 max-w-3xl">
-          <p className="font-mono text-base md:text-lg lg:text-xl text-grey-light leading-[1.9]">
+        <div data-contact-cta className="mb-16 md:mb-24 max-w-2xl">
+          <p className="font-mono text-sm md:text-base text-grey-light/80 leading-[1.9]">
             Got a project in mind? Looking for a developer who ships fast and
-            cares about craft? Let's talk. Drop me a line and I'll get back to
-            you within 24 hours.
+            cares about craft? Drop me a line and I'll get back to you within 24
+            hours.
           </p>
         </div>
 
-        {/* Contact info — horizontal brutal grid */}
-        <div
-          data-contact-info-grid
-          className="grid grid-cols-2 md:grid-cols-4 gap-0 border-t border-b border-dark-light mb-16 md:mb-24"
-        >
-          {[
-            { label: "Email", value: profileData.email, href: `mailto:${profileData.email}` },
-            { label: "Phone", value: profileData.phone, href: `tel:${profileData.phone}` },
-            { label: "Location", value: profileData.location },
-            { label: "Github", value: "kinanlakhdar", href: profileData.social.github },
-          ].map((info, i) => (
-            <div
-              key={i}
-              data-contact-info
-              className="border-b md:border-b-0 md:border-r border-dark-light last:border-r-0 last:border-b-0 p-6 md:p-8 group hover:bg-dark transition-colors duration-500"
-            >
-              <span className="font-mono text-[10px] md:text-xs text-accent tracking-[0.3em] uppercase block mb-3">
-                {info.label}
-              </span>
-              {info.href ? (
-                <a
-                  href={info.href}
-                  target={info.href.startsWith("http") ? "_blank" : undefined}
-                  rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="font-mono text-sm md:text-base text-white hover:text-accent transition-colors duration-300 break-all block"
-                >
-                  {info.value}
-                </a>
-              ) : (
-                <span className="font-mono text-sm md:text-base text-white block">
-                  {info.value}
-                </span>
-              )}
-            </div>
-          ))}
-        </div>
+        {/* Two-column layout: form + sidebar */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-16 lg:gap-20">
+          {/* ── Left: Form ── */}
+          <div data-contact-form>
+            <form onSubmit={handleSubmit} className="space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div data-contact-field className="group">
+                  <label className="font-mono text-[10px] text-grey tracking-[0.3em] uppercase block mb-3">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formState.name}
+                    onChange={(e) =>
+                      setFormState({ ...formState, name: e.target.value })
+                    }
+                    className="w-full bg-transparent border-b border-dark-light focus:border-accent text-white-pure font-mono text-sm md:text-base py-4 outline-none transition-colors duration-300 placeholder:text-grey/20"
+                    placeholder="Your name"
+                  />
+                </div>
+                <div data-contact-field className="group">
+                  <label className="font-mono text-[10px] text-grey tracking-[0.3em] uppercase block mb-3">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    value={formState.email}
+                    onChange={(e) =>
+                      setFormState({ ...formState, email: e.target.value })
+                    }
+                    className="w-full bg-transparent border-b border-dark-light focus:border-accent text-white-pure font-mono text-sm md:text-base py-4 outline-none transition-colors duration-300 placeholder:text-grey/20"
+                    placeholder="your@email.com"
+                  />
+                </div>
+              </div>
 
-        {/* Form — full width, brutal */}
-        <div data-contact-form>
-          <div className="flex items-center gap-4 mb-10">
-            <div className="w-8 h-[2px] bg-accent" />
-            <span className="font-mono text-sm text-accent tracking-[0.3em] uppercase">
-              Send a message
-            </span>
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-8 max-w-4xl">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div data-contact-field>
-                <label className="font-mono text-xs text-grey tracking-[0.3em] uppercase block mb-4">
-                  Name
+                <label className="font-mono text-[10px] text-grey tracking-[0.3em] uppercase block mb-3">
+                  Subject
                 </label>
                 <input
                   type="text"
                   required
-                  value={formState.name}
+                  value={formState.subject}
                   onChange={(e) =>
-                    setFormState({ ...formState, name: e.target.value })
+                    setFormState({ ...formState, subject: e.target.value })
                   }
-                  className="w-full bg-transparent border-b-2 border-dark-light focus:border-accent text-white-pure font-mono text-base md:text-lg py-4 outline-none transition-colors duration-300 placeholder:text-grey/30"
-                  placeholder="Your name"
+                  className="w-full bg-transparent border-b border-dark-light focus:border-accent text-white-pure font-mono text-sm md:text-base py-4 outline-none transition-colors duration-300 placeholder:text-grey/20"
+                  placeholder="What's this about?"
                 />
               </div>
+
               <div data-contact-field>
-                <label className="font-mono text-xs text-grey tracking-[0.3em] uppercase block mb-4">
-                  Email
+                <label className="font-mono text-[10px] text-grey tracking-[0.3em] uppercase block mb-3">
+                  Message
                 </label>
-                <input
-                  type="email"
+                <textarea
                   required
-                  value={formState.email}
+                  rows={5}
+                  value={formState.message}
                   onChange={(e) =>
-                    setFormState({ ...formState, email: e.target.value })
+                    setFormState({ ...formState, message: e.target.value })
                   }
-                  className="w-full bg-transparent border-b-2 border-dark-light focus:border-accent text-white-pure font-mono text-base md:text-lg py-4 outline-none transition-colors duration-300 placeholder:text-grey/30"
-                  placeholder="your@email.com"
+                  className="w-full bg-transparent border-b border-dark-light focus:border-accent text-white-pure font-mono text-sm md:text-base py-4 outline-none transition-colors duration-300 resize-none placeholder:text-grey/20"
+                  placeholder="Tell me about your project..."
                 />
               </div>
-            </div>
 
-            <div data-contact-field>
-              <label className="font-mono text-xs text-grey tracking-[0.3em] uppercase block mb-4">
-                Subject
-              </label>
-              <input
-                type="text"
-                required
-                value={formState.subject}
-                onChange={(e) =>
-                  setFormState({ ...formState, subject: e.target.value })
-                }
-                className="w-full bg-transparent border-b-2 border-dark-light focus:border-accent text-white-pure font-mono text-base md:text-lg py-4 outline-none transition-colors duration-300 placeholder:text-grey/30"
-                placeholder="What's this about?"
-              />
-            </div>
+              <div data-contact-field className="pt-4">
+                <button
+                  type="submit"
+                  className="group relative font-display text-xl md:text-2xl tracking-[0.15em] uppercase border border-accent text-accent px-10 md:px-14 py-5 md:py-6 hover:text-black transition-colors duration-500 cursor-pointer overflow-hidden"
+                >
+                  <span className="relative z-10">Send Message</span>
+                  <div className="absolute inset-0 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                </button>
+              </div>
+            </form>
+          </div>
 
-            <div data-contact-field>
-              <label className="font-mono text-xs text-grey tracking-[0.3em] uppercase block mb-4">
-                Message
-              </label>
-              <textarea
-                required
-                rows={6}
-                value={formState.message}
-                onChange={(e) =>
-                  setFormState({ ...formState, message: e.target.value })
-                }
-                className="w-full bg-transparent border-b-2 border-dark-light focus:border-accent text-white-pure font-mono text-base md:text-lg py-4 outline-none transition-colors duration-300 resize-none placeholder:text-grey/30"
-                placeholder="Tell me about your project..."
-              />
-            </div>
+          {/* ── Right: Contact info sidebar ── */}
+          <div
+            data-contact-sidebar
+            className="lg:border-l lg:border-dark-light lg:pl-16"
+          >
+            <span className="font-mono text-[10px] text-grey tracking-[0.3em] uppercase block mb-8">
+              Contact details
+            </span>
 
-            <div data-contact-field className="pt-4">
-              <button
-                type="submit"
-                className="group relative font-display text-2xl md:text-3xl tracking-[0.15em] uppercase bg-accent text-black px-10 md:px-14 py-5 md:py-6 hover:bg-accent-light transition-colors duration-300 cursor-pointer overflow-hidden"
-              >
-                <span className="relative z-10 group-hover:text-black transition-colors duration-300">
-                  Send Message
-                </span>
-                <div className="absolute inset-0 bg-white-pure scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-              </button>
+            <div className="space-y-8">
+              {contactInfo.map((info, i) => (
+                <div key={i} data-contact-info>
+                  <span className="font-mono text-[10px] text-accent/60 tracking-[0.25em] uppercase block mb-2">
+                    {info.label}
+                  </span>
+                  {info.href ? (
+                    <a
+                      href={info.href}
+                      target={
+                        info.href.startsWith("http") ? "_blank" : undefined
+                      }
+                      rel={
+                        info.href.startsWith("http")
+                          ? "noopener noreferrer"
+                          : undefined
+                      }
+                      className="font-mono text-sm text-white hover:text-accent transition-colors duration-300 break-all"
+                    >
+                      {info.value}
+                    </a>
+                  ) : (
+                    <span className="font-mono text-sm text-white">
+                      {info.value}
+                    </span>
+                  )}
+                </div>
+              ))}
             </div>
-          </form>
+          </div>
         </div>
       </div>
 
       {/* Final marquee */}
-      <div className="mt-section-sm md:mt-section border-y border-dark-light py-3">
+      <div className="mt-content-sm md:mt-content border-y border-dark-light py-4">
         <Marquee reverse speed={25}>
           {Array(8)
             .fill(null)
             .map((_, i) => (
               <span
                 key={i}
-                className="font-display text-xl md:text-2xl text-dark-light mx-6 md:mx-10 flex items-center gap-6 md:gap-10 select-none"
+                className="font-display text-xl md:text-2xl text-dark-light flex items-center gap-6 md:gap-10 select-none"
               >
                 LET'S BUILD SOMETHING GREAT &mdash; OPEN TO OPPORTUNITIES
                 &mdash; AVAILABLE NOW
@@ -302,8 +318,8 @@ export default function Contact() {
       </div>
 
       {/* Footer */}
-      <div className="relative z-10 px-4 md:px-8 lg:px-12 mt-16 md:mt-24 pt-8 border-t border-dark-light">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+      <div className="section-shell relative z-10 mt-20 md:mt-28 pt-10 border-t border-dark-light">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8 pb-8">
           <span className="font-display text-lg md:text-xl text-grey tracking-widest uppercase">
             &copy; {new Date().getFullYear()} {profileData.name}
           </span>

@@ -50,15 +50,15 @@ export default function Projects() {
       className="relative bg-black-light py-section-sm md:py-section overflow-hidden"
     >
       {/* Giant background number */}
-      <div className="absolute -top-8 left-4 md:left-12 overflow-hidden">
+      <div className="absolute -top-8 left-6 md:left-16 overflow-hidden">
         <span className="font-display text-[clamp(12rem,30vw,28rem)] text-dark leading-none select-none block">
           04
         </span>
       </div>
 
-      <div className="relative z-10 px-4 md:px-8 lg:px-12">
+      <div className="section-shell relative z-10">
         {/* Section tag */}
-        <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center gap-4 mb-10">
           <div className="w-16 h-[2px] bg-accent" />
           <span className="font-mono text-sm text-accent tracking-[0.3em] uppercase">
             Headliners
@@ -66,7 +66,7 @@ export default function Projects() {
         </div>
 
         {/* Title + count */}
-        <div data-proj-title className="mb-20 md:mb-28 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div data-proj-title className="mb-24 md:mb-32 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <h2 className="font-display text-[clamp(4rem,12vw,11rem)] text-white-pure leading-[0.85]">
             {"Projects".split("").map((char, i) => (
               <span key={i} className="overflow-hidden inline-block">
@@ -108,9 +108,9 @@ export default function Projects() {
                   }`}
                 />
 
-                <div className="relative py-10 md:py-16 px-2 md:px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <div className="relative py-12 md:py-20 px-4 md:px-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
                   {/* Left: number + name */}
-                  <div className="flex items-baseline gap-4 md:gap-8">
+                  <div className="flex items-baseline gap-5 md:gap-10">
                     <span
                       className={`font-mono text-sm transition-colors duration-500 ${
                         isHovered ? "text-black" : "text-accent"
@@ -151,10 +151,10 @@ export default function Projects() {
                 {/* Expanded description */}
                 <div
                   className={`relative overflow-hidden transition-all duration-700 ${
-                    isHovered ? "max-h-40 pb-10" : "max-h-0"
+                    isHovered ? "max-h-48 pb-12" : "max-h-0"
                   }`}
                 >
-                  <div className="px-2 md:px-6 flex flex-col md:flex-row justify-between gap-6">
+                  <div className="px-4 md:px-8 flex flex-col md:flex-row justify-between gap-8">
                     <p
                       className={`font-mono text-sm md:text-base max-w-2xl leading-relaxed transition-colors duration-500 ${
                         isHovered ? "text-black/80" : "text-grey-light"
@@ -162,11 +162,11 @@ export default function Projects() {
                     >
                       {project.description}
                     </p>
-                    <div className="flex flex-wrap gap-2 md:justify-end">
+                    <div className="flex flex-wrap gap-3 md:justify-end">
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className={`font-mono text-xs px-3 py-1 uppercase tracking-wider font-bold transition-colors duration-500 ${
+                          className={`font-mono text-xs px-4 py-1.5 uppercase tracking-wider font-bold transition-colors duration-500 ${
                             isHovered
                               ? "text-accent bg-black"
                               : "text-accent bg-dark border border-accent/20"

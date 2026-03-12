@@ -16,14 +16,14 @@ export default function Marquee({
   };
 
   return (
-    <div className={`overflow-hidden whitespace-nowrap ${className}`}>
+    <div className={`marquee-viewport overflow-hidden whitespace-nowrap ${className}`}>
       <div
         className={reverse ? "marquee-track-reverse" : "marquee-track"}
         style={style}
       >
         {/* Duplicate content for seamless loop */}
-        <div className="flex shrink-0">{children}</div>
-        <div className="flex shrink-0" aria-hidden>{children}</div>
+        <div className="flex shrink-0 gap-12 md:gap-20">{children}</div>
+        <div className="flex shrink-0 gap-12 md:gap-20" aria-hidden>{children}</div>
       </div>
     </div>
   );

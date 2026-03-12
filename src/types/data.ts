@@ -76,3 +76,13 @@ export interface NavigationSection {
 export interface NavigationData {
   sections: NavigationSection[];
 }
+
+export interface MusicData {
+  title: string;
+  artist: string;
+  src: string;
+  bpm: number;
+  seekBeats: number;
+  syncOffsetMs: number;
+  loop: boolean;
+}

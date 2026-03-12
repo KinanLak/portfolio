@@ -11,7 +11,9 @@ import Education from "@/components/Education";
 import Contact from "@/components/Contact";
 import Navigation from "@/components/Navigation";
 import CustomCursor from "@/components/CustomCursor";
+import MiniPlayer from "@/components/MiniPlayer";
 import { useBassEffect } from "@/hooks/useBassEffect";
+import { musicController } from "@/hooks/useMusicPlayer";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -37,6 +39,10 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    musicController.init();
+  }, []);
+
   // Rhythmic bass distortion on all titles
   useBassEffect();
 
@@ -50,6 +56,9 @@ function App() {
 
       {/* Navigation */}
       <Navigation />
+
+      {/* Music player */}
+      <MiniPlayer />
 
       {/* Sections */}
       <main className="cursor-none md:cursor-none overflow-x-hidden">

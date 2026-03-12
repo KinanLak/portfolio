@@ -1,10 +1,8 @@
 import { useEffect } from "react";
 import gsap from "gsap";
+import { musicController } from "@/hooks/useMusicPlayer";
 
-// ── Rhythm config ──────────────────────────────────
-// 130 BPM — classic electronic / bass music tempo
-const BPM = 130 ;
-const BEAT = 60 / BPM; // ~0.462s per beat
+const BAR_BEATS = 4;
 
 /**
  * Rhythmic "bass pulse" system — layers stacked on every beat:
@@ -21,6 +19,8 @@ const BEAT = 60 / BPM; // ~0.462s per beat
  */
 export function useBassEffect() {
   useEffect(() => {
+    musicController.init();
+
     const heavy = gsap.utils.toArray<HTMLElement>('[data-bass="heavy"]');
     const medium = gsap.utils.toArray<HTMLElement>('[data-bass="medium"]');
     const light = gsap.utils.toArray<HTMLElement>('[data-bass="light"]');
@@ -47,167 +47,246 @@ export function useBassEffect() {
       });
     }
 
-    const tl = gsap.timeline({ repeat: -1, delay: 3.5 });
+    const kick = () => {
+      const tl = gsap.timeline();
 
-    // ═══════════════════════════════════════════════════
-    //  BEAT 1 — KICK
-    // ═══════════════════════════════════════════════════
+      if (main) {
+        tl.to(main, { x: 3, rotation: 0.15, duration: 0.04, ease: "power4.in", overwrite: "auto" }, 0);
+        tl.to(main, { x: -1.5, rotation: -0.06, duration: 0.06, ease: "power2.out", overwrite: "auto" }, 0.04);
+        tl.to(main, { x: 0, rotation: 0, duration: 0.14, ease: "power2.out", overwrite: "auto" }, 0.1);
+      }
 
-    // ▸ Screen shake — horizontal tremor
-    if (main) {
-      tl.to(main, { x: 3, rotation: 0.15, duration: 0.04, ease: "power4.in" }, 0);
-      tl.to(main, { x: -1.5, rotation: -0.06, duration: 0.06, ease: "power2.out" }, 0.04);
-      tl.to(main, { x: 0, rotation: 0, duration: 0.14, ease: "power2.out" }, 0.10);
-    }
+      tl.to(flashEl, { opacity: 1, duration: 0.06, ease: "power4.in", overwrite: "auto" }, 0);
+      tl.to(flashEl, { opacity: 0, duration: 0.5, ease: "power3.out", overwrite: "auto" }, 0.06);
 
-    // ▸ Screen flash — warm orange glow
-    tl.to(flashEl, { opacity: 1, duration: 0.06, ease: "power4.in" }, 0);
-    tl.to(flashEl, { opacity: 0, duration: 0.5, ease: "power3.out" }, 0.06);
+      if (heavy.length) {
+        tl.to(heavy, {
+          keyframes: [
+            { scaleY: 1.08, scaleX: 0.95, skewX: 2.5, rotation: 0.3, duration: 0.06, ease: "power4.in" },
+            { scaleY: 0.97, scaleX: 1.02, skewX: -0.8, rotation: -0.1, duration: 0.09, ease: "power2.out" },
+            { scaleY: 1, scaleX: 1, skewX: 0, rotation: 0, duration: 0.3, ease: "elastic.out(1, 0.3)" },
+          ],
+          overwrite: "auto",
+        }, 0);
+        tl.set(heavy, {
+          filter: "drop-shadow(6px 0 0 rgba(255,20,20,0.8)) drop-shadow(-6px 0 0 rgba(20,60,255,0.8))",
+        }, 0);
+        tl.set(heavy, {
+          filter: "drop-shadow(2px 0 0 rgba(255,20,20,0.3)) drop-shadow(-2px 0 0 rgba(20,60,255,0.3))",
+        }, 0.09);
+        tl.set(heavy, { filter: "none" }, 0.18);
+      }
 
-    // ▸ Heavy (h1 / name) — big punch + RGB split
-    if (heavy.length) {
-      tl.to(heavy, {
-        keyframes: [
-          { scaleY: 1.08, scaleX: 0.95, skewX: 2.5, rotation: 0.3, duration: 0.06, ease: "power4.in" },
-          { scaleY: 0.97, scaleX: 1.02, skewX: -0.8, rotation: -0.1, duration: 0.09, ease: "power2.out" },
-          { scaleY: 1, scaleX: 1, skewX: 0, rotation: 0, duration: 0.3, ease: "elastic.out(1, 0.3)" },
-        ],
-      }, 0);
-      // Chromatic aberration — red right, blue left
-      tl.set(heavy, {
-        filter: "drop-shadow(6px 0 0 rgba(255,20,20,0.8)) drop-shadow(-6px 0 0 rgba(20,60,255,0.8))",
-      }, 0);
-      tl.set(heavy, {
-        filter: "drop-shadow(2px 0 0 rgba(255,20,20,0.3)) drop-shadow(-2px 0 0 rgba(20,60,255,0.3))",
-      }, 0.09);
-      tl.set(heavy, { filter: "none" }, 0.18);
-    }
+      if (glitchEl) {
+        tl.to(glitchEl, {
+          "--glitch-dx": "10px",
+          "--glitch-dy": "4px",
+          "--glitch-clip": "20%",
+          duration: 0.06,
+          ease: "power4.in",
+          overwrite: "auto",
+        }, 0);
+        tl.to(glitchEl, {
+          "--glitch-dx": "-3px",
+          "--glitch-dy": "-1px",
+          "--glitch-clip": "50%",
+          duration: 0.08,
+          ease: "power2.out",
+          overwrite: "auto",
+        }, 0.06);
+        tl.to(glitchEl, {
+          "--glitch-dx": "0px",
+          "--glitch-dy": "0px",
+          "--glitch-clip": "100%",
+          duration: 0.3,
+          ease: "elastic.out(1, 0.3)",
+          overwrite: "auto",
+        }, 0.14);
+      }
 
-    // ▸ Glitch burst on "Kinan" — displacement + reveal
-    if (glitchEl) {
-      tl.to(glitchEl, {
-        "--glitch-dx": "10px", "--glitch-dy": "4px", "--glitch-clip": "20%",
-        duration: 0.06, ease: "power4.in",
-      }, 0);
-      tl.to(glitchEl, {
-        "--glitch-dx": "-3px", "--glitch-dy": "-1px", "--glitch-clip": "50%",
-        duration: 0.08, ease: "power2.out",
-      }, 0.06);
-      tl.to(glitchEl, {
-        "--glitch-dx": "0px", "--glitch-dy": "0px", "--glitch-clip": "100%",
-        duration: 0.3, ease: "elastic.out(1, 0.3)",
-      }, 0.14);
-    }
+      if (medium.length) {
+        tl.to(medium, {
+          keyframes: [
+            { scaleY: 1.05, scaleX: 0.97, skewX: 1.5, duration: 0.06, ease: "power4.in" },
+            { scaleY: 0.98, skewX: -0.3, scaleX: 1.01, duration: 0.08, ease: "power2.out" },
+            { scaleY: 1, scaleX: 1, skewX: 0, duration: 0.25, ease: "elastic.out(1, 0.35)" },
+          ],
+          overwrite: "auto",
+        }, 0.01);
+        tl.set(medium, {
+          filter: "drop-shadow(3px 0 0 rgba(255,20,20,0.6)) drop-shadow(-3px 0 0 rgba(20,60,255,0.6))",
+        }, 0.01);
+        tl.set(medium, {
+          filter: "drop-shadow(1px 0 0 rgba(255,20,20,0.2)) drop-shadow(-1px 0 0 rgba(20,60,255,0.2))",
+        }, 0.08);
+        tl.set(medium, { filter: "none" }, 0.14);
+      }
 
-    // ▸ Medium (h2 section titles) — moderate + lighter aberration
-    if (medium.length) {
-      tl.to(medium, {
-        keyframes: [
-          { scaleY: 1.05, scaleX: 0.97, skewX: 1.5, duration: 0.06, ease: "power4.in" },
-          { scaleY: 0.98, skewX: -0.3, scaleX: 1.01, duration: 0.08, ease: "power2.out" },
-          { scaleY: 1, scaleX: 1, skewX: 0, duration: 0.25, ease: "elastic.out(1, 0.35)" },
-        ],
-      }, 0.01);
-      tl.set(medium, {
-        filter: "drop-shadow(3px 0 0 rgba(255,20,20,0.6)) drop-shadow(-3px 0 0 rgba(20,60,255,0.6))",
-      }, 0.01);
-      tl.set(medium, {
-        filter: "drop-shadow(1px 0 0 rgba(255,20,20,0.2)) drop-shadow(-1px 0 0 rgba(20,60,255,0.2))",
-      }, 0.08);
-      tl.set(medium, { filter: "none" }, 0.14);
-    }
+      if (light.length) {
+        tl.to(light, {
+          keyframes: [
+            { scaleY: 1.03, skewX: 0.8, duration: 0.05, ease: "power3.in" },
+            { scaleY: 1, skewX: 0, duration: 0.2, ease: "power2.out" },
+          ],
+          overwrite: "auto",
+        }, 0.025);
+      }
+    };
 
-    // ▸ Light (h3 sub-titles) — visible pulse
-    if (light.length) {
-      tl.to(light, {
-        keyframes: [
-          { scaleY: 1.03, skewX: 0.8, duration: 0.05, ease: "power3.in" },
-          { scaleY: 1, skewX: 0, duration: 0.2, ease: "power2.out" },
-        ],
-      }, 0.025);
-    }
+    const snare = () => {
+      const tl = gsap.timeline();
 
-    // ═══════════════════════════════════════════════════
-    //  BEAT 3 — SNARE
-    // ═══════════════════════════════════════════════════
-    const snare = BEAT * 2;
+      if (main) {
+        tl.to(main, { y: 2, duration: 0.03, ease: "power4.in", overwrite: "auto" }, 0);
+        tl.to(main, { y: -0.8, duration: 0.05, ease: "power2.out", overwrite: "auto" }, 0.03);
+        tl.to(main, { y: 0, duration: 0.12, ease: "power2.out", overwrite: "auto" }, 0.08);
+      }
 
-    // ▸ Screen shake — vertical for snare
-    if (main) {
-      tl.to(main, { y: 2, duration: 0.03, ease: "power4.in" }, snare);
-      tl.to(main, { y: -0.8, duration: 0.05, ease: "power2.out" }, snare + 0.03);
-      tl.to(main, { y: 0, duration: 0.12, ease: "power2.out" }, snare + 0.08);
-    }
+      tl.to(flashEl, { opacity: 0.6, duration: 0.05, ease: "power4.in", overwrite: "auto" }, 0);
+      tl.to(flashEl, { opacity: 0, duration: 0.4, ease: "power3.out", overwrite: "auto" }, 0.05);
 
-    // ▸ Screen flash (lighter on snare)
-    tl.to(flashEl, { opacity: 0.6, duration: 0.05, ease: "power4.in" }, snare);
-    tl.to(flashEl, { opacity: 0, duration: 0.4, ease: "power3.out" }, snare + 0.05);
+      if (heavy.length) {
+        tl.to(heavy, {
+          keyframes: [
+            { scaleX: 1.06, scaleY: 0.96, skewX: -2, rotation: -0.2, duration: 0.05, ease: "power4.in" },
+            { scaleX: 0.98, scaleY: 1.01, skewX: 0.5, rotation: 0.1, duration: 0.08, ease: "power2.out" },
+            { scaleX: 1, scaleY: 1, skewX: 0, rotation: 0, duration: 0.28, ease: "elastic.out(1, 0.4)" },
+          ],
+          overwrite: "auto",
+        }, 0);
+        tl.set(heavy, {
+          filter: "drop-shadow(-5px 0 0 rgba(255,20,20,0.7)) drop-shadow(5px 0 0 rgba(20,60,255,0.7))",
+        }, 0);
+        tl.set(heavy, {
+          filter: "drop-shadow(-2px 0 0 rgba(255,20,20,0.3)) drop-shadow(2px 0 0 rgba(20,60,255,0.3))",
+        }, 0.08);
+        tl.set(heavy, { filter: "none" }, 0.16);
+      }
 
-    // ▸ Heavy — horizontal snap + reversed aberration
-    if (heavy.length) {
-      tl.to(heavy, {
-        keyframes: [
-          { scaleX: 1.06, scaleY: 0.96, skewX: -2, rotation: -0.2, duration: 0.05, ease: "power4.in" },
-          { scaleX: 0.98, scaleY: 1.01, skewX: 0.5, rotation: 0.1, duration: 0.08, ease: "power2.out" },
-          { scaleX: 1, scaleY: 1, skewX: 0, rotation: 0, duration: 0.28, ease: "elastic.out(1, 0.4)" },
-        ],
-      }, snare);
-      // Reversed aberration — red left, blue right
-      tl.set(heavy, {
-        filter: "drop-shadow(-5px 0 0 rgba(255,20,20,0.7)) drop-shadow(5px 0 0 rgba(20,60,255,0.7))",
-      }, snare);
-      tl.set(heavy, {
-        filter: "drop-shadow(-2px 0 0 rgba(255,20,20,0.3)) drop-shadow(2px 0 0 rgba(20,60,255,0.3))",
-      }, snare + 0.08);
-      tl.set(heavy, { filter: "none" }, snare + 0.16);
-    }
+      if (glitchEl) {
+        tl.to(glitchEl, {
+          "--glitch-dx": "-8px",
+          "--glitch-dy": "-3px",
+          "--glitch-clip": "25%",
+          duration: 0.05,
+          ease: "power4.in",
+          overwrite: "auto",
+        }, 0);
+        tl.to(glitchEl, {
+          "--glitch-dx": "2px",
+          "--glitch-dy": "1px",
+          "--glitch-clip": "55%",
+          duration: 0.07,
+          ease: "power2.out",
+          overwrite: "auto",
+        }, 0.05);
+        tl.to(glitchEl, {
+          "--glitch-dx": "0px",
+          "--glitch-dy": "0px",
+          "--glitch-clip": "100%",
+          duration: 0.25,
+          ease: "elastic.out(1, 0.4)",
+          overwrite: "auto",
+        }, 0.12);
+      }
 
-    // ▸ Glitch burst on snare — reversed direction
-    if (glitchEl) {
-      tl.to(glitchEl, {
-        "--glitch-dx": "-8px", "--glitch-dy": "-3px", "--glitch-clip": "25%",
-        duration: 0.05, ease: "power4.in",
-      }, snare);
-      tl.to(glitchEl, {
-        "--glitch-dx": "2px", "--glitch-dy": "1px", "--glitch-clip": "55%",
-        duration: 0.07, ease: "power2.out",
-      }, snare + 0.05);
-      tl.to(glitchEl, {
-        "--glitch-dx": "0px", "--glitch-dy": "0px", "--glitch-clip": "100%",
-        duration: 0.25, ease: "elastic.out(1, 0.4)",
-      }, snare + 0.12);
-    }
+      if (medium.length) {
+        tl.to(medium, {
+          keyframes: [
+            { scaleX: 1.035, scaleY: 0.98, skewX: -1, duration: 0.05, ease: "power3.in" },
+            { scaleX: 1, scaleY: 1, skewX: 0, duration: 0.22, ease: "elastic.out(1, 0.4)" },
+          ],
+          overwrite: "auto",
+        }, 0.01);
+        tl.set(medium, {
+          filter: "drop-shadow(-2px 0 0 rgba(255,20,20,0.5)) drop-shadow(2px 0 0 rgba(20,60,255,0.5))",
+        }, 0.01);
+        tl.set(medium, { filter: "none" }, 0.11);
+      }
 
-    // ▸ Medium — snap + aberration
-    if (medium.length) {
-      tl.to(medium, {
-        keyframes: [
-          { scaleX: 1.035, scaleY: 0.98, skewX: -1, duration: 0.05, ease: "power3.in" },
-          { scaleX: 1, scaleY: 1, skewX: 0, duration: 0.22, ease: "elastic.out(1, 0.4)" },
-        ],
-      }, snare + 0.01);
-      tl.set(medium, {
-        filter: "drop-shadow(-2px 0 0 rgba(255,20,20,0.5)) drop-shadow(2px 0 0 rgba(20,60,255,0.5))",
-      }, snare + 0.01);
-      tl.set(medium, { filter: "none" }, snare + 0.11);
-    }
+      if (light.length) {
+        tl.to(light, {
+          keyframes: [
+            { scaleX: 1.02, skewX: -0.5, duration: 0.04, ease: "power2.in" },
+            { scaleX: 1, skewX: 0, duration: 0.18, ease: "power2.out" },
+          ],
+          overwrite: "auto",
+        }, 0.02);
+      }
+    };
 
-    // ▸ Light — subtle snap
-    if (light.length) {
-      tl.to(light, {
-        keyframes: [
-          { scaleX: 1.02, skewX: -0.5, duration: 0.04, ease: "power2.in" },
-          { scaleX: 1, skewX: 0, duration: 0.18, ease: "power2.out" },
-        ],
-      }, snare + 0.02);
-    }
+    const ghostPulse = () => {
+      const tl = gsap.timeline();
 
-    // ── Pad to exactly one full bar (4 beats) ──
-    tl.set({}, {}, BEAT * 4);
+      tl.to(flashEl, { opacity: 0.28, duration: 0.03, ease: "power2.in", overwrite: "auto" }, 0);
+      tl.to(flashEl, { opacity: 0, duration: 0.22, ease: "power2.out", overwrite: "auto" }, 0.03);
+
+      if (heavy.length) {
+        tl.to(heavy, {
+          keyframes: [
+            { scale: 1.015, duration: 0.04, ease: "power2.in" },
+            { scale: 1, duration: 0.16, ease: "power2.out" },
+          ],
+          overwrite: "auto",
+        }, 0);
+      }
+
+      if (medium.length) {
+        tl.to(medium, {
+          keyframes: [
+            { scale: 1.018, duration: 0.04, ease: "power2.in" },
+            { scale: 1, duration: 0.16, ease: "power2.out" },
+          ],
+          overwrite: "auto",
+        }, 0.01);
+      }
+
+      if (light.length) {
+        tl.to(light, {
+          keyframes: [
+            { scale: 1.025, duration: 0.03, ease: "power2.in" },
+            { scale: 1, duration: 0.14, ease: "power2.out" },
+          ],
+          overwrite: "auto",
+        }, 0.015);
+      }
+    };
+
+    let frameId = 0;
+    let lastBeat = musicController.getBeatState().beatIndex;
+
+    const tick = () => {
+      const beatState = musicController.getBeatState();
+
+      if (!beatState.isPlaying) {
+        lastBeat = beatState.beatIndex;
+        frameId = window.requestAnimationFrame(tick);
+        return;
+      }
+
+      if (beatState.beatIndex !== lastBeat) {
+        lastBeat = beatState.beatIndex;
+
+        switch (beatState.beatInBar % BAR_BEATS) {
+          case 0:
+            kick();
+            break;
+          case 2:
+            snare();
+            break;
+          default:
+            ghostPulse();
+        }
+      }
+
+      frameId = window.requestAnimationFrame(tick);
+    };
+
+    frameId = window.requestAnimationFrame(tick);
 
     // ── Cleanup ──
     return () => {
-      tl.kill();
+      window.cancelAnimationFrame(frameId);
       gsap.set(all, { clearProps: "transform,filter" });
       if (main) gsap.set(main, { clearProps: "transform" });
       if (glitchEl) {

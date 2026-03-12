@@ -131,7 +131,7 @@ export default function Hero() {
       <div className="relative z-10 w-full">
         {/* THE NAME — Absolutely massive */}
         <div className="section-shell">
-          <h1 className="font-display leading-[0.82] tracking-tight">
+          <h1 data-bass="heavy" className="font-display leading-[0.82] tracking-tight">
             <div className="overflow-hidden">
               <span
                 data-hero-first

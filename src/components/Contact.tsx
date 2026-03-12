@@ -146,7 +146,7 @@ export default function Contact() {
 
         {/* Title */}
         <div data-contact-title className="mb-8 md:mb-14">
-          <h2 className="font-display text-[clamp(4rem,14vw,13rem)] text-white-pure leading-[0.85]">
+          <h2 data-bass="medium" className="font-display text-[clamp(4rem,14vw,13rem)] text-white-pure leading-[0.85]">
             {"Get In".split(" ").map((word, i) => (
               <span key={i} className="overflow-hidden inline-block mr-[0.2em]">
                 <span data-contact-word className="inline-block">
@@ -320,7 +320,7 @@ export default function Contact() {
       {/* Footer */}
       <div className="section-shell relative z-10 mt-20 md:mt-28 pt-10 border-t border-dark-light">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 pb-8">
-          <span className="font-display text-lg md:text-xl text-grey tracking-widest uppercase">
+          <span data-bass="light" className="font-display text-lg md:text-xl text-grey tracking-widest uppercase">
             &copy; {new Date().getFullYear()} {profileData.name}
           </span>
           <span className="font-mono text-xs text-grey/40 tracking-widest">

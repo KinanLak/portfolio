@@ -68,7 +68,7 @@ export default function Experience() {
 
         {/* Title */}
         <div data-exp-title className="mb-24 md:mb-36">
-          <h2 className="font-display text-[clamp(4rem,12vw,11rem)] text-white-pure leading-[0.85]">
+          <h2 data-bass="medium" className="font-display text-[clamp(4rem,12vw,11rem)] text-white-pure leading-[0.85]">
             {"Experience".split("").map((char, i) => (
               <span key={i} className="overflow-hidden inline-block">
                 <span data-exp-word className="inline-block">
@@ -108,7 +108,7 @@ export default function Experience() {
 
                 {/* Center: role + org */}
                 <div className="lg:col-span-5">
-                  <h3 className="font-display text-3xl md:text-5xl text-white-pure group-hover:text-accent transition-colors duration-300 mb-3">
+                  <h3 data-bass="light" className="font-display text-3xl md:text-5xl text-white-pure group-hover:text-accent transition-colors duration-300 mb-3">
                     {item.role}
                   </h3>
                   <p className="font-mono text-base md:text-lg text-grey">

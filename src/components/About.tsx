@@ -103,7 +103,7 @@ export default function About() {
 
         {/* Title — big and broken across lines */}
         <div data-about-title className="mb-20 md:mb-28">
-          <h2 className="font-display text-[clamp(4rem,12vw,11rem)] text-white-pure leading-[0.85]">
+          <h2 data-bass="medium" className="font-display text-[clamp(4rem,12vw,11rem)] text-white-pure leading-[0.85]">
             {"Who I Am".split(" ").map((word, i) => (
               <span key={i} className="overflow-hidden inline-block mr-[0.2em]">
                 <span data-about-word className="inline-block">

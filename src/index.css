@@ -138,6 +138,9 @@ body {
 
 .glitch {
   position: relative;
+  --glitch-dx: 0px;
+  --glitch-dy: 0px;
+  --glitch-clip: 100%;
 }
 
 .glitch::before,
@@ -154,13 +157,15 @@ body {
 .glitch::before {
   color: var(--color-accent);
   animation: glitch-1 3s infinite linear alternate-reverse;
-  clip-path: inset(0 0 80% 0);
+  clip-path: inset(0 0 var(--glitch-clip) 0);
+  translate: var(--glitch-dx) var(--glitch-dy);
 }
 
 .glitch::after {
   color: var(--color-white-pure);
   animation: glitch-2 2.5s infinite linear alternate-reverse;
-  clip-path: inset(80% 0 0 0);
+  clip-path: inset(var(--glitch-clip) 0 0 0);
+  translate: calc(var(--glitch-dx) * -1) calc(var(--glitch-dy) * -1);
 }
 
 @keyframes glitch-1 {
@@ -205,6 +210,28 @@ body {
 main > section + section {
   border-top: 1px solid var(--color-dark-light);
   margin-top: 3rem;
+}
+
+/* ============================================
+   BASS EFFECT — Rhythmic distortion on titles
+   GPU-only: transform + opacity (no paint)
+   ============================================ */
+
+[data-bass] {
+  display: inline-block;
+}
+
+.bass-flash {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 80, 0, 0.22),
+    rgba(200, 30, 0, 0.10) 40%,
+    transparent 60%
+  );
 }
 
 /* ============================================

@@ -67,7 +67,7 @@ export default function Projects() {
 
         {/* Title + count */}
         <div data-proj-title className="mb-24 md:mb-32 flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <h2 className="font-display text-[clamp(4rem,12vw,11rem)] text-white-pure leading-[0.85]">
+          <h2 data-bass="medium" className="font-display text-[clamp(4rem,12vw,11rem)] text-white-pure leading-[0.85]">
             {"Projects".split("").map((char, i) => (
               <span key={i} className="overflow-hidden inline-block">
                 <span data-proj-word className="inline-block">
@@ -119,6 +119,7 @@ export default function Projects() {
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <h3
+                      data-bass="light"
                       className={`font-display text-5xl md:text-7xl lg:text-8xl transition-colors duration-500 ${
                         isHovered ? "text-black" : "text-white-pure"
                       }`}

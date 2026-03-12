@@ -11,10 +11,12 @@ import Education from "@/components/Education";
 import Contact from "@/components/Contact";
 import Navigation from "@/components/Navigation";
 import CustomCursor from "@/components/CustomCursor";
+import { useBassEffect } from "@/hooks/useBassEffect";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
+  // Smooth scrolling
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -34,6 +36,9 @@ function App() {
       gsap.ticker.remove((time) => lenis.raf(time * 1000));
     };
   }, []);
+
+  // Rhythmic bass distortion on all titles
+  useBassEffect();
 
   return (
     <>

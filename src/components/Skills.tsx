@@ -86,7 +86,7 @@ export default function Skills() {
 
         {/* Title */}
         <div data-skills-title className="mb-24 md:mb-32">
-          <h2 className="font-display text-[clamp(4rem,12vw,11rem)] text-white-pure leading-[0.85]">
+          <h2 data-bass="medium" className="font-display text-[clamp(4rem,12vw,11rem)] text-white-pure leading-[0.85]">
             {"Skills".split("").map((char, i) => (
               <span key={i} className="overflow-hidden inline-block">
                 <span data-skills-word className="inline-block">
@@ -120,6 +120,7 @@ export default function Skills() {
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <h3
+                      data-bass="light"
                       className={`font-display text-3xl md:text-5xl transition-colors duration-300 ${
                         isExpanded ? "text-accent" : "text-white-pure group-hover:text-accent"
                       }`}

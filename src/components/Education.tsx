@@ -82,7 +82,7 @@ export default function Education() {
 
         {/* Title — massive broken words */}
         <div data-edu-title className="mb-20 md:mb-28">
-          <h2 className="font-display text-[clamp(4rem,12vw,11rem)] text-white-pure leading-[0.85]">
+          <h2 data-bass="medium" className="font-display text-[clamp(4rem,12vw,11rem)] text-white-pure leading-[0.85]">
             {"Education".split("").map((char, i) => (
               <span key={i} className="overflow-hidden inline-block">
                 <span data-edu-word className="inline-block">
@@ -116,7 +116,7 @@ export default function Education() {
 
                 {/* Center column: degree + institution */}
                 <div className="md:col-span-6">
-                  <h3 className="font-display text-[clamp(1.8rem,4vw,3.5rem)] text-white-pure leading-[0.95] group-hover:text-accent transition-colors duration-300 mb-4">
+                  <h3 data-bass="light" className="font-display text-[clamp(1.8rem,4vw,3.5rem)] text-white-pure leading-[0.95] group-hover:text-accent transition-colors duration-300 mb-4">
                     {item.degree}
                   </h3>
                   <p className="font-mono text-sm md:text-base text-grey tracking-wide">

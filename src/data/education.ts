@@ -4,13 +4,13 @@ const education: EducationData = {
   items: [
     {
       id: "but-informatique",
-      degree: "B.Sc. in Computer Science (BUT Informatique)",
+      degree: "B.U.T. Informatique",
       institution: "IUT d'Aix-Marseille — Arles",
       period: "Sept 2023 — Present",
       highlights: [
-        "Application design, development & validation",
-        "Team projects using Agile methodology",
-        "Specialization in web & mobile development",
+        "Progressed from C++, web, systems, and SQL foundations to architecture, mobile, 3D, optimization, and advanced programming.",
+        "Key projects include CLI Calendrier, Military Aircrafts Manager, Gradely, Horloge OpenGL, and a final-year technical report centered on Nautika.",
+        "Coursework consistently combined code quality, software architecture, data visualization, networks, and product-oriented team delivery.",
       ],
     },
     {
@@ -19,9 +19,9 @@ const education: EducationData = {
       institution: "ECE Paris — Engineering School",
       period: "Sept 2021 — June 2023",
       highlights: [
-        "Mathematics, Physics",
-        "Systems & software programming in C",
-        "Digital electronics",
+        "Strong scientific foundation in mathematics, physics, mechanics, and numerical simulation.",
+        "Early programming practice through C, Python notebooks, and team-based engineering assignments.",
+        "Hands-on exposure to electronics, systems thinking, technical reports, and oral presentations.",
       ],
     },
     {
@@ -30,8 +30,8 @@ const education: EducationData = {
       institution: "Lycée Alain — Le Vésinet, Yvelines",
       period: "Sept 2018 — June 2021",
       highlights: [
-        "Advanced Mathematics option",
-        "NSI specialty (Computer Science & Digital Sciences)",
+        "Mathematics track with NSI specialization in computer science and digital sciences.",
+        "Built early algorithmic and programming foundations before moving into engineering studies.",
       ],
     },
   ],

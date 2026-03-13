@@ -71,8 +71,8 @@ export default function About() {
 
   const facts = [
     { label: "Location", value: profileData.location },
-    { label: "Focus", value: "Web & Mobile" },
-    { label: "Status", value: "Open to opportunities" },
+    { label: "Focus", value: "Products, APIs & mobile" },
+    { label: "Current", value: "Part-time at Nautika" },
     { label: "Side", value: "Firefighter since 2017" },
   ];
 

@@ -5,74 +5,66 @@ const skills: SkillsData = {
     {
       id: "frontend",
       name: "Front Stage",
-      category: "Frontend Development",
-      technologies: ["HTML/CSS/JS", "React Native", "Qt"],
+      category: "Frontend & UX",
+      technologies: ["React", "TypeScript", "Vite", "Tailwind CSS v4", "GSAP"],
       description:
-        "Building reactive, modern user interfaces for web and mobile applications.",
+        "Designing interfaces that stay fast, expressive, and product-focused across modern web applications.",
+    },
+    {
+      id: "mobile",
+      name: "Pocket Lab",
+      category: "Mobile Development",
+      technologies: ["Expo", "React Native", "Ionic", "Capacitor", "Angular"],
+      description:
+        "Building mobile experiences through both the React Native and Ionic ecosystems, depending on the project context.",
     },
     {
       id: "backend",
       name: "Engine Room",
-      category: "Backend Development",
-      technologies: ["Express", "Flask", "FastAPI"],
+      category: "Backend & APIs",
+      technologies: ["Bun", "Elysia", "Express", "Laravel", "Better Auth", "OpenAPI"],
       description:
-        "Designing and implementing robust, scalable servers and APIs.",
+        "Designing typed APIs, auth flows, and service layers that stay pragmatic, documented, and maintainable.",
     },
     {
-      id: "databases",
+      id: "data",
       name: "The Vault",
-      category: "Databases",
-      technologies: ["SQL", "PostgreSQL"],
+      category: "Databases & Data",
+      technologies: ["PostgreSQL", "Drizzle ORM", "MySQL", "SQLite", "SQL"],
       description:
-        "Efficient data management with relational database systems.",
+        "Modeling, querying, and validating data from classroom SQL work to production-oriented application schemas.",
     },
     {
-      id: "languages",
-      name: "Main Stage",
-      category: "Programming Languages",
-      technologies: ["C", "C++", "JavaScript/TypeScript", "Python", "Java"],
+      id: "systems",
+      name: "Low-Level Deck",
+      category: "Systems & Graphics",
+      technologies: ["C", "C++", "Go", "OpenGL", "CMake"],
       description:
-        "Mastery of multiple languages to adapt to diverse development needs.",
+        "Comfortable switching from product stacks to lower-level work in systems programming, tooling, and graphics projects.",
     },
     {
-      id: "vcs",
-      name: "Control Tower",
-      category: "Version Control",
-      technologies: ["Git", "GitHub"],
+      id: "ai-data",
+      name: "Signal Room",
+      category: "Data, Scripting & AI",
+      technologies: ["Python", "Jupyter", "Power BI", "OpenAI API", "Pandas"],
       description:
-        "Efficient source code management and developer collaboration.",
+        "Using scripting, notebooks, visualization, and API experimentation to explore data and prototype ideas quickly.",
     },
     {
-      id: "devops",
+      id: "delivery",
       name: "Backstage",
-      category: "DevOps",
-      technologies: ["Docker", "GitHub Actions", "Linux"],
+      category: "Tooling & Delivery",
+      technologies: ["Docker", "Vercel", "Turborepo", "GitHub Actions", "Linux", "Git"],
       description:
-        "Setting up CI/CD pipelines and managing deployment environments.",
+        "Shipping projects with repeatable tooling, deployment workflows, monorepos, and clean day-to-day developer ergonomics.",
     },
     {
-      id: "cloud",
-      name: "The Cloud Stage",
-      category: "Cloud & Hosting",
-      technologies: ["AWS EC2", "S3", "NGINX"],
-      description:
-        "Deploying and managing applications on cloud infrastructure.",
-    },
-    {
-      id: "languages-spoken",
-      name: "World Stage",
-      category: "Languages",
-      technologies: ["French (native)", "English (professional)"],
-      description:
-        "Effective communication in an international environment.",
-    },
-    {
-      id: "methodologies",
+      id: "workflow",
       name: "Crew Area",
-      category: "Methodologies & Tools",
-      technologies: ["Agile", "Jira", "Office Suite"],
+      category: "Workflow & Communication",
+      technologies: ["Agile", "Technical Writing", "French", "English"],
       description:
-        "Applying project management methodologies and collaborative tools.",
+        "Documenting decisions, collaborating clearly, and keeping projects understandable for both teammates and stakeholders.",
     },
   ],
 };

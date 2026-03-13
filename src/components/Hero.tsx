@@ -123,7 +123,7 @@ export default function Hero() {
       {/* Vertical side label */}
       <div className="absolute left-8 top-1/2 -translate-y-1/2 z-20 hidden lg:block">
         <span className="text-vertical font-mono text-[11px] text-grey tracking-[0.5em] uppercase">
-          Full Stack Developer &mdash; 2025
+          {profileData.title} &mdash; 2026
         </span>
       </div>
 
@@ -157,16 +157,16 @@ export default function Hero() {
         <div data-hero-marquee className="mt-10 md:mt-14 border-y border-dark-light py-5">
           <Marquee speed={25}>
             {[
-              "FULL STACK DEVELOPER",
-              "REACT NATIVE",
+              "REACT",
               "TYPESCRIPT",
-              "NODE.JS",
-              "PYTHON",
+              "BUN",
+              "ELYSIA",
+              "EXPO",
+              "OPENGL",
               "DOCKER",
-              "AWS",
               "POSTGRESQL",
-              "FASTAPI",
-              "C/C++",
+              "GO",
+              "C++",
             ].map((item) => (
               <span
                 key={item}

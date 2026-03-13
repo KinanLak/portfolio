@@ -14,6 +14,7 @@ export default function Contact() {
     subject: "",
     message: "",
   });
+  const githubHandle = profileData.social.github.split("github.com/")[1] ?? "KinanLak";
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -114,7 +115,7 @@ export default function Contact() {
     { label: "Location", value: profileData.location },
     {
       label: "Github",
-      value: "kinanlakhdar",
+      value: githubHandle,
       href: profileData.social.github,
     },
   ];
@@ -169,9 +170,10 @@ export default function Contact() {
         {/* CTA statement */}
         <div data-contact-cta className="mb-16 md:mb-24 max-w-2xl">
           <p className="font-mono text-sm md:text-base text-grey-light/80 leading-[1.9]">
-            Got a project in mind? Looking for a developer who ships fast and
-            cares about craft? Drop me a line and I'll get back to you within 24
-            hours.
+            If you are building a product, a tool, or an interface that needs
+            both technical depth and attention to detail, send me a message. I
+            am always happy to discuss ideas, collaborations, and new
+            opportunities.
           </p>
         </div>
 

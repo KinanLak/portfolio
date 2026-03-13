@@ -86,7 +86,7 @@ export function useBassEffect() {
       const tl = gsap.timeline();
 
       // VU meter: fast rise to peak, slow segmented fall
-      fireMeter(METER_PEAK_KICK, 0.08, 0.06, 0.55);
+      fireMeter(METER_PEAK_KICK, 0.08, 0.06, 0.38);
 
       if (main) {
         tl.to(main, { x: 3, rotation: 0.15, duration: 0.04, ease: "power4.in", overwrite: "auto" }, 0);
@@ -178,7 +178,7 @@ export function useBassEffect() {
       const tl = gsap.timeline();
 
       // VU meter: slightly lower peak, same segmented behaviour
-      fireMeter(METER_PEAK_SNARE, 0.06, 0.04, 0.45);
+      fireMeter(METER_PEAK_SNARE, 0.06, 0.04, 0.3);
 
       if (main) {
         tl.to(main, { y: 2, duration: 0.03, ease: "power4.in", overwrite: "auto" }, 0);

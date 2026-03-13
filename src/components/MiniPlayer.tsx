@@ -10,7 +10,7 @@ export default function MiniPlayer() {
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
 
   return (
-    <aside className="fixed top-4 right-4 z-[60] flex w-[min(16rem,calc(100vw-2rem))] items-center gap-2.5 overflow-hidden rounded-full border border-white/10 bg-black/70 py-1 pr-3 pl-1 backdrop-blur-xl">
+    <aside className="fixed top-4 right-4 z-60 flex w-[min(16rem,calc(100vw-2rem))] items-center gap-2.5 overflow-hidden rounded-full border border-white/10 bg-black/70 py-1 pr-3 pl-1 backdrop-blur-xl">
       {/* Vinyl disc */}
       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5">
         <div className="music-player-disc-scale" style={{ transform: `scale(${beatGlow})` }}>
@@ -65,7 +65,7 @@ export default function MiniPlayer() {
       </div>
 
       {/* Progress bar — overlays at the bottom without adding height */}
-      <div className="pointer-events-none absolute bottom-0 left-0 h-[2px] w-full bg-white/5">
+      <div className="pointer-events-none absolute bottom-0 left-0 h-0.5 w-full bg-white/5">
         <div
           className="h-full bg-accent transition-[width] duration-200 ease-linear"
           style={{ width: `${progress}%` }}

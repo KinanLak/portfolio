@@ -1,7 +1,9 @@
 import { useRef, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import projectsData from "@/data/projects";
+import ProjectDetail from "@/components/ProjectDetail";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -9,6 +11,7 @@ export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
   const cardRefs = useRef<HTMLDivElement[]>([]);
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -97,6 +100,7 @@ export default function Projects() {
                 }}
                 onMouseEnter={() => setHoveredProject(project.id)}
                 onMouseLeave={() => setHoveredProject(null)}
+                onClick={() => setSelectedIndex(i)}
                 className={`group relative border-t-2 border-dark-light cursor-pointer transition-all duration-700 ${
                   somethingElseHovered ? "opacity-20" : "opacity-100"
                 }`}
@@ -185,6 +189,18 @@ export default function Projects() {
           <div className="border-t-2 border-dark-light" />
         </div>
       </div>
+
+      {/* Project detail takeover — rendered via portal to escape stacking contexts */}
+      {selectedIndex !== null &&
+        createPortal(
+          <ProjectDetail
+            projects={projectsData.items}
+            selectedIndex={selectedIndex}
+            onClose={() => setSelectedIndex(null)}
+            onNavigate={setSelectedIndex}
+          />,
+          document.body
+        )}
     </section>
   );
 }

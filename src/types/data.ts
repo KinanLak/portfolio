@@ -54,13 +54,24 @@ export interface SkillsData {
   stages: SkillStage[];
 }
 
+export interface ProjectLink {
+  label: string;
+  url: string;
+}
+
 export interface ProjectItem {
   id: string;
   name: string;
   tagline: string;
   description: string;
+  longDescription: string;
   tags: string[];
   featured: boolean;
+  role: string;
+  year: string;
+  highlights: string[];
+  links: ProjectLink[];
+  image?: string;
 }
 
 export interface ProjectsData {

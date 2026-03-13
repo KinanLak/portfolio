@@ -1,5 +1,7 @@
 import { useRef, useEffect, useCallback } from "react";
 import gsap from "gsap";
+import { SourceCodeIcon, ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import type { ProjectItem } from "@/types/data";
 
 interface ProjectDetailProps {
@@ -143,9 +145,10 @@ export default function ProjectDetail({
         style={{ zIndex: 50, transformOrigin: "left" }}
       />
 
-      {/* Scrollable content */}
+      {/* Scrollable content — data-lenis-prevent stops Lenis from hijacking scroll inside the overlay */}
       <div
         ref={scrollRef}
+        data-lenis-prevent
         className="relative h-full overflow-y-auto overflow-x-hidden"
         style={{ zIndex: 20 }}
       >
@@ -267,15 +270,21 @@ export default function ProjectDetail({
                       target="_blank"
                       rel="noopener noreferrer"
                       data-cursor-hover
-                      className="group relative font-mono text-sm text-white-pure border-2 border-accent px-6 py-3 uppercase tracking-widest overflow-hidden transition-colors duration-500 hover:text-black"
+                      className="group relative inline-flex items-center gap-3 font-mono text-sm bg-accent text-black px-7 py-4 uppercase tracking-widest overflow-hidden transition-all duration-500 hover:bg-white-pure"
                     >
-                      <span className="absolute inset-0 bg-accent origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                      <span className="relative">
-                        {link.label}{" "}
-                        <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
-                          &rarr;
-                        </span>
+                      <HugeiconsIcon
+                        icon={link.label.toLowerCase().includes("source") ? SourceCodeIcon : ArrowUpRight01Icon}
+                        size={18}
+                        className="relative z-10"
+                      />
+                      <span className="relative z-10 font-semibold">
+                        {link.label}
                       </span>
+                      <HugeiconsIcon
+                        icon={ArrowUpRight01Icon}
+                        size={16}
+                        className="relative z-10 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      />
                     </a>
                   ))}
                 </div>

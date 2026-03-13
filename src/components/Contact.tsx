@@ -1,6 +1,8 @@
 import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Mail01Icon, CallIcon, Location01Icon, Github01Icon, SentIcon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import profileData from "@/data/profile";
 
 
@@ -106,17 +108,24 @@ export default function Contact() {
       label: "Email",
       value: profileData.email,
       href: `mailto:${profileData.email}`,
+      icon: Mail01Icon,
     },
     {
       label: "Phone",
       value: profileData.phone,
       href: `tel:${profileData.phone}`,
+      icon: CallIcon,
     },
-    { label: "Location", value: profileData.location },
+    {
+      label: "Location",
+      value: profileData.location,
+      icon: Location01Icon,
+    },
     {
       label: "Github",
       value: githubHandle,
       href: profileData.social.github,
+      icon: Github01Icon,
     },
   ];
 
@@ -246,13 +255,16 @@ export default function Contact() {
                 />
               </div>
 
-              <div data-contact-field className="pt-4">
+              <div data-contact-field className="pt-6">
                 <button
                   type="submit"
-                  className="group relative font-display text-xl md:text-2xl tracking-[0.15em] uppercase border border-accent text-accent px-10 md:px-14 py-5 md:py-6 hover:text-black transition-colors duration-500 cursor-pointer overflow-hidden"
+                  className="group relative w-full font-display text-2xl md:text-3xl tracking-[0.15em] uppercase bg-accent text-black px-10 md:px-14 py-6 md:py-7 hover:bg-white-pure transition-colors duration-500 cursor-pointer overflow-hidden flex items-center justify-center gap-4"
                 >
                   <span className="relative z-10">Send Message</span>
-                  <div className="absolute inset-0 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                  <HugeiconsIcon
+                    icon={SentIcon}
+                    className="relative z-10 size-6 md:size-7 transition-transform duration-300 group-hover:translate-x-1"
+                  />
                 </button>
               </div>
             </form>
@@ -261,38 +273,47 @@ export default function Contact() {
           {/* ── Right: Contact info sidebar ── */}
           <div
             data-contact-sidebar
-            className="lg:border-l lg:border-dark-light lg:pl-16"
+            className="lg:border-l lg:border-dark-light lg:pl-20"
           >
-            <span className="font-mono text-[10px] text-grey tracking-[0.3em] uppercase block mb-8">
+            <span className="font-mono text-[10px] text-grey tracking-[0.3em] uppercase block mb-10">
               Contact details
             </span>
 
-            <div className="space-y-8">
+            <div className="space-y-7">
               {contactInfo.map((info, i) => (
-                <div key={i} data-contact-info>
-                  <span className="font-mono text-[10px] text-accent/60 tracking-[0.25em] uppercase block mb-2">
-                    {info.label}
-                  </span>
-                  {info.href ? (
-                    <a
-                      href={info.href}
-                      target={
-                        info.href.startsWith("http") ? "_blank" : undefined
-                      }
-                      rel={
-                        info.href.startsWith("http")
-                          ? "noopener noreferrer"
-                          : undefined
-                      }
-                      className="font-mono text-sm text-white hover:text-accent transition-colors duration-300 break-all"
-                    >
-                      {info.value}
-                    </a>
-                  ) : (
-                    <span className="font-mono text-sm text-white">
-                      {info.value}
+                <div
+                  key={i}
+                  data-contact-info
+                  className="group/info flex items-start gap-4 p-4 border border-dark-light/50 rounded-sm hover:border-accent/30 transition-colors duration-300"
+                >
+                  <div className="shrink-0 mt-0.5 text-accent/70 group-hover/info:text-accent transition-colors duration-300">
+                    <HugeiconsIcon icon={info.icon} size={18} />
+                  </div>
+                  <div>
+                    <span className="font-mono text-[10px] text-grey/60 tracking-[0.25em] uppercase block mb-1.5">
+                      {info.label}
                     </span>
-                  )}
+                    {info.href ? (
+                      <a
+                        href={info.href}
+                        target={
+                          info.href.startsWith("http") ? "_blank" : undefined
+                        }
+                        rel={
+                          info.href.startsWith("http")
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
+                        className="font-mono text-sm text-white hover:text-accent transition-colors duration-300 break-all"
+                      >
+                        {info.value}
+                      </a>
+                    ) : (
+                      <span className="font-mono text-sm text-white">
+                        {info.value}
+                      </span>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>

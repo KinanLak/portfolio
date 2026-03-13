@@ -155,7 +155,7 @@ export default function Projects() {
                     isHovered ? "max-h-48 pb-12" : "max-h-0"
                   }`}
                 >
-                  <div className="px-4 md:px-8 flex flex-col md:flex-row justify-between gap-8">
+                  <div className="px-6 md:px-12 flex flex-col md:flex-row justify-between gap-8">
                     <p
                       className={`font-mono text-sm md:text-base max-w-2xl leading-relaxed transition-colors duration-500 ${
                         isHovered ? "text-black/80" : "text-grey-light"

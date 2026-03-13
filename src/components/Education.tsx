@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import educationData from "@/data/education";
-import Marquee from "@/components/Marquee";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -152,23 +152,8 @@ export default function Education() {
         <div className="border-t border-dark-light" />
       </div>
 
-      {/* Divider marquee */}
-      <div className="mt-content-sm md:mt-content border-y border-dark-light py-4">
-        <Marquee speed={35}>
-          {Array(6)
-            .fill(null)
-            .map((_, i) => (
-              <span
-                key={i}
-                className="font-display text-xl md:text-2xl text-dark-light flex items-center gap-6 md:gap-10 select-none"
-              >
-                NEVER STOP LEARNING &mdash; STAY CURIOUS &mdash; BUILD THE
-                FUTURE
-                <span className="text-accent/30">&diams;</span>
-              </span>
-            ))}
-        </Marquee>
-      </div>
+      {/* Section divider */}
+      <div className="mt-content-sm md:mt-content border-t border-dark-light" />
     </section>
   );
 }

@@ -3,6 +3,9 @@ import gsap from "gsap";
 import { musicController } from "@/hooks/useMusicPlayer";
 
 const BAR_BEATS = 4;
+const METER_STEPS = 12;
+const METER_PEAK_KICK = 80;
+const METER_PEAK_SNARE = 60;
 
 /**
  * Rhythmic "bass pulse" system — layers stacked on every beat:
@@ -43,12 +46,47 @@ export function useBassEffect() {
       gsap.set(glitchEl, {
         "--glitch-dx": "0px",
         "--glitch-dy": "0px",
-        "--glitch-clip": "100%",
+        "--glitch-slice": "100%",
+        "--glitch-fill": "0%",
+        "--glitch-glow": 0,
+        "--glitch-ghost-opacity": 0,
       });
     }
 
+    const stepsUp = `steps(${METER_STEPS})`;
+    const stepsDown = `steps(${METER_STEPS})`;
+    let meterTween: gsap.core.Timeline | null = null;
+
+    // Animate VU meter: fast climb up in steps, slower fall down in steps
+    const fireMeter = (peakFill: number, riseTime: number, holdTime: number, fallTime: number) => {
+      if (!glitchEl) return;
+      if (meterTween) meterTween.kill();
+
+      meterTween = gsap.timeline();
+      // Rise: segments light up from bottom to peak
+      meterTween.to(glitchEl, {
+        "--glitch-fill": `${peakFill}%`,
+        "--glitch-glow": 0.5,
+        duration: riseTime,
+        ease: stepsUp,
+        overwrite: "auto",
+      }, 0);
+      // Hold at peak briefly
+      // Fall: segments drop back down to 0
+      meterTween.to(glitchEl, {
+        "--glitch-fill": "0%",
+        "--glitch-glow": 0,
+        duration: fallTime,
+        ease: stepsDown,
+        overwrite: "auto",
+      }, riseTime + holdTime);
+    };
+
     const kick = () => {
       const tl = gsap.timeline();
+
+      // VU meter: fast rise to peak, slow segmented fall
+      fireMeter(METER_PEAK_KICK, 0.08, 0.06, 0.55);
 
       if (main) {
         tl.to(main, { x: 3, rotation: 0.15, duration: 0.04, ease: "power4.in", overwrite: "auto" }, 0);
@@ -79,29 +117,32 @@ export function useBassEffect() {
 
       if (glitchEl) {
         tl.to(glitchEl, {
-          "--glitch-dx": "10px",
-          "--glitch-dy": "4px",
-          "--glitch-clip": "20%",
-          duration: 0.06,
+          "--glitch-dx": "12px",
+          "--glitch-dy": "-4px",
+          "--glitch-slice": "42%",
+          "--glitch-ghost-opacity": 0.9,
+          duration: 0.05,
           ease: "power4.in",
           overwrite: "auto",
         }, 0);
         tl.to(glitchEl, {
-          "--glitch-dx": "-3px",
-          "--glitch-dy": "-1px",
-          "--glitch-clip": "50%",
+          "--glitch-dx": "-4px",
+          "--glitch-dy": "2px",
+          "--glitch-slice": "68%",
+          "--glitch-ghost-opacity": 0.45,
           duration: 0.08,
           ease: "power2.out",
           overwrite: "auto",
-        }, 0.06);
+        }, 0.05);
         tl.to(glitchEl, {
           "--glitch-dx": "0px",
           "--glitch-dy": "0px",
-          "--glitch-clip": "100%",
+          "--glitch-slice": "100%",
+          "--glitch-ghost-opacity": 0,
           duration: 0.3,
           ease: "elastic.out(1, 0.3)",
           overwrite: "auto",
-        }, 0.14);
+        }, 0.13);
       }
 
       if (medium.length) {
@@ -136,6 +177,9 @@ export function useBassEffect() {
     const snare = () => {
       const tl = gsap.timeline();
 
+      // VU meter: slightly lower peak, same segmented behaviour
+      fireMeter(METER_PEAK_SNARE, 0.06, 0.04, 0.45);
+
       if (main) {
         tl.to(main, { y: 2, duration: 0.03, ease: "power4.in", overwrite: "auto" }, 0);
         tl.to(main, { y: -0.8, duration: 0.05, ease: "power2.out", overwrite: "auto" }, 0.03);
@@ -167,7 +211,8 @@ export function useBassEffect() {
         tl.to(glitchEl, {
           "--glitch-dx": "-8px",
           "--glitch-dy": "-3px",
-          "--glitch-clip": "25%",
+          "--glitch-slice": "50%",
+          "--glitch-ghost-opacity": 0.7,
           duration: 0.05,
           ease: "power4.in",
           overwrite: "auto",
@@ -175,7 +220,8 @@ export function useBassEffect() {
         tl.to(glitchEl, {
           "--glitch-dx": "2px",
           "--glitch-dy": "1px",
-          "--glitch-clip": "55%",
+          "--glitch-slice": "78%",
+          "--glitch-ghost-opacity": 0.32,
           duration: 0.07,
           ease: "power2.out",
           overwrite: "auto",
@@ -183,7 +229,8 @@ export function useBassEffect() {
         tl.to(glitchEl, {
           "--glitch-dx": "0px",
           "--glitch-dy": "0px",
-          "--glitch-clip": "100%",
+          "--glitch-slice": "100%",
+          "--glitch-ghost-opacity": 0,
           duration: 0.25,
           ease: "elastic.out(1, 0.4)",
           overwrite: "auto",
@@ -287,13 +334,17 @@ export function useBassEffect() {
     // ── Cleanup ──
     return () => {
       window.cancelAnimationFrame(frameId);
+      if (meterTween) meterTween.kill();
       gsap.set(all, { clearProps: "transform,filter" });
       if (main) gsap.set(main, { clearProps: "transform" });
       if (glitchEl) {
         gsap.set(glitchEl, {
           "--glitch-dx": "0px",
           "--glitch-dy": "0px",
-          "--glitch-clip": "100%",
+          "--glitch-slice": "100%",
+          "--glitch-fill": "0%",
+          "--glitch-glow": 0,
+          "--glitch-ghost-opacity": 0,
         });
       }
       flashEl.remove();

@@ -1,10 +1,98 @@
 import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  ReactIcon,
+  Typescript01Icon,
+  FlashIcon,
+  TailwindcssIcon,
+  FrameworksIcon,
+  SmartPhone01Icon,
+  SmartPhone02Icon,
+  SmartPhone03Icon,
+  WebDesign01Icon,
+  CommandLineIcon,
+  ApiIcon,
+  ServerStack01Icon,
+  WebProgrammingIcon,
+  AuthorizedIcon,
+  ApiGatewayIcon,
+  DatabaseIcon,
+  DatabaseLightningIcon,
+  Database01Icon,
+  Database02Icon,
+  SqlIcon,
+  CProgrammingIcon,
+  CodeSquareIcon,
+  SourceCodeIcon,
+  GraphicCardIcon,
+  Configuration01Icon,
+  PythonIcon,
+  ComputerProgramming01Icon,
+  Analytics01Icon,
+  NeuralNetworkIcon,
+  ChartLineData01Icon,
+  ContainerIcon,
+  CloudIcon,
+  Structure01Icon,
+  Github01Icon,
+  ComputerTerminal01Icon,
+  GitBranchIcon,
+  KanbanIcon,
+  ContentWritingIcon,
+  LanguageCircleIcon,
+  LanguageSkillIcon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 import skillsData from "@/data/skills";
-import Marquee from "@/components/Marquee";
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Tech name → HugeIcon mapping
+type IconDef = typeof ReactIcon;
+const TECH_ICONS: Record<string, IconDef> = {
+  "React": ReactIcon,
+  "TypeScript": Typescript01Icon,
+  "Vite": FlashIcon,
+  "Tailwind CSS v4": TailwindcssIcon,
+  "GSAP": FrameworksIcon,
+  "Expo": SmartPhone01Icon,
+  "React Native": ReactIcon,
+  "Ionic": SmartPhone02Icon,
+  "Capacitor": SmartPhone03Icon,
+  "Angular": WebDesign01Icon,
+  "Bun": CommandLineIcon,
+  "Elysia": ApiIcon,
+  "Express": ServerStack01Icon,
+  "Laravel": WebProgrammingIcon,
+  "Better Auth": AuthorizedIcon,
+  "OpenAPI": ApiGatewayIcon,
+  "PostgreSQL": DatabaseIcon,
+  "Drizzle ORM": DatabaseLightningIcon,
+  "MySQL": Database01Icon,
+  "SQLite": Database02Icon,
+  "SQL": SqlIcon,
+  "C": CProgrammingIcon,
+  "C++": CodeSquareIcon,
+  "Go": SourceCodeIcon,
+  "OpenGL": GraphicCardIcon,
+  "CMake": Configuration01Icon,
+  "Python": PythonIcon,
+  "Jupyter": ComputerProgramming01Icon,
+  "Power BI": Analytics01Icon,
+  "OpenAI API": NeuralNetworkIcon,
+  "Pandas": ChartLineData01Icon,
+  "Docker": ContainerIcon,
+  "Vercel": CloudIcon,
+  "Turborepo": Structure01Icon,
+  "GitHub Actions": Github01Icon,
+  "Linux": ComputerTerminal01Icon,
+  "Git": GitBranchIcon,
+  "Agile": KanbanIcon,
+  "Technical Writing": ContentWritingIcon,
+  "French": LanguageCircleIcon,
+  "English": LanguageSkillIcon,
+};
 
 export default function Skills() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -44,9 +132,6 @@ export default function Skills() {
     return () => ctx.revert();
   }, []);
 
-  // All techs for the marquee
-  const allTechs = skillsData.stages.flatMap((s) => s.technologies);
-
   return (
     <section
       id="skills"
@@ -58,21 +143,6 @@ export default function Skills() {
         <span className="font-display text-[clamp(12rem,30vw,28rem)] text-dark leading-none select-none block">
           03
         </span>
-      </div>
-
-      {/* Tech marquee — top, like a festival wristband */}
-      <div className="border-y-2 border-accent py-5 mb-content-sm md:mb-content">
-        <Marquee speed={15}>
-          {allTechs.map((tech, i) => (
-            <span
-              key={`${tech}-${i}`}
-              className="font-display text-3xl md:text-5xl text-accent flex items-center gap-6 md:gap-10"
-            >
-              {tech}
-              <span className="text-white-pure text-xl">&times;</span>
-            </span>
-          ))}
-        </Marquee>
       </div>
 
       <div className="section-shell relative z-10">
@@ -146,22 +216,33 @@ export default function Skills() {
                 {/* Expandable content */}
                 <div
                   className={`overflow-hidden transition-all duration-700 ease-out ${
-                    isExpanded ? "max-h-80 pb-10" : "max-h-0"
+                    isExpanded ? "max-h-96 pb-10" : "max-h-0"
                   }`}
                 >
-                  <div className="pl-14 md:pl-20 grid grid-cols-1 md:grid-cols-2 gap-10">
+                  <div className="pl-14 pr-4 md:pl-20 md:pr-10 grid grid-cols-1 md:grid-cols-2 gap-10">
                     <p className="font-mono text-base md:text-lg text-grey-light leading-relaxed">
                       {stage.description}
                     </p>
-                    <div className="flex flex-wrap gap-3.5">
-                      {stage.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          className="font-mono text-sm text-black bg-accent px-5 py-2.5 uppercase tracking-wider font-bold"
-                        >
-                          {tech}
-                        </span>
-                      ))}
+                    <div className="flex flex-wrap gap-3">
+                      {stage.technologies.map((tech) => {
+                        const icon = TECH_ICONS[tech];
+                        return (
+                          <span
+                            key={tech}
+                            className="inline-flex items-center gap-2 font-mono text-xs md:text-sm text-accent border border-accent/40 px-4 py-2 uppercase tracking-wider transition-colors duration-300 hover:bg-accent hover:text-black"
+                          >
+                            {icon && (
+                              <HugeiconsIcon
+                                icon={icon}
+                                size={14}
+                                strokeWidth={1.5}
+                                color="currentColor"
+                              />
+                            )}
+                            {tech}
+                          </span>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
@@ -170,21 +251,6 @@ export default function Skills() {
           })}
           <div className="border-t border-dark-light" />
         </div>
-      </div>
-
-      {/* Bottom marquee — reverse direction */}
-      <div className="border-y-2 border-accent py-5 mt-content-sm md:mt-content">
-        <Marquee reverse speed={18}>
-          {allTechs.map((tech, i) => (
-            <span
-              key={`rev-${tech}-${i}`}
-              className="font-display text-3xl md:text-5xl text-accent/30 flex items-center gap-6 md:gap-10"
-            >
-              {tech}
-              <span className="text-white-pure/20 text-xl">&times;</span>
-            </span>
-          ))}
-        </Marquee>
       </div>
     </section>
   );

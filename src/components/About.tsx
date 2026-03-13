@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import profileData from "@/data/profile";
-import Marquee from "@/components/Marquee";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -147,23 +147,8 @@ export default function About() {
         </div>
       </div>
 
-      {/* Divider marquee */}
-      <div className="mt-content-sm md:mt-content border-y border-dark-light py-4">
-        <Marquee reverse speed={30}>
-          {Array(6)
-            .fill(null)
-            .map((_, i) => (
-              <span
-                key={i}
-                className="font-display text-xl md:text-2xl text-dark-light flex items-center gap-6 md:gap-10 select-none"
-              >
-                CODE WITH INTENTION &mdash; BUILD WITH CRAFT &mdash; SHIP WITH
-                CONFIDENCE
-                <span className="text-accent/30">&diams;</span>
-              </span>
-            ))}
-        </Marquee>
-      </div>
+      {/* Section divider */}
+      <div className="mt-content-sm md:mt-content border-t border-dark-light" />
     </section>
   );
 }

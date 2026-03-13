@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import profileData from "@/data/profile";
-import Marquee from "@/components/Marquee";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -148,15 +148,14 @@ export default function Contact() {
         {/* Title */}
         <div data-contact-title className="mb-8 md:mb-14">
           <h2 data-bass="medium" className="font-display text-[clamp(4rem,14vw,13rem)] text-white-pure leading-[0.85]">
-            {"Get In".split(" ").map((word, i) => (
+            {"Get In".split(" ").map((word, i) => (
               <span key={i} className="overflow-hidden inline-block mr-[0.2em]">
                 <span data-contact-word className="inline-block">
                   {word}
                 </span>
               </span>
             ))}
-            <br />
-            {"Touch".split("").map((char, i) => (
+            {" Touch".split("").map((char, i) => (
               <span key={`t-${i}`} className="overflow-hidden inline-block">
                 <span data-contact-word className="inline-block">
                   {char}
@@ -301,23 +300,8 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* Final marquee */}
-      <div className="mt-content-sm md:mt-content border-y border-dark-light py-4">
-        <Marquee reverse speed={25}>
-          {Array(8)
-            .fill(null)
-            .map((_, i) => (
-              <span
-                key={i}
-                className="font-display text-xl md:text-2xl text-dark-light flex items-center gap-6 md:gap-10 select-none"
-              >
-                LET'S BUILD SOMETHING GREAT &mdash; OPEN TO OPPORTUNITIES
-                &mdash; AVAILABLE NOW
-                <span className="text-accent/30">&diams;</span>
-              </span>
-            ))}
-        </Marquee>
-      </div>
+      {/* Section divider */}
+      <div className="mt-content-sm md:mt-content border-t border-dark-light" />
 
       {/* Footer */}
       <div className="section-shell relative z-10 mt-20 md:mt-28 pt-10 border-t border-dark-light">

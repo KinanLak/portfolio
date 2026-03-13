@@ -138,9 +138,20 @@ body {
 
 .glitch {
   position: relative;
+  isolation: isolate;
   --glitch-dx: 0px;
   --glitch-dy: 0px;
-  --glitch-clip: 100%;
+  --glitch-slice: 100%;
+  --glitch-fill: 0%;
+  --glitch-glow: 0;
+  --glitch-ghost-opacity: 0;
+}
+
+.glitch-base {
+  position: relative;
+  display: block;
+  z-index: 1;
+  color: var(--color-white-pure);
 }
 
 .glitch::before,
@@ -152,20 +163,55 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
+  z-index: 2;
 }
 
 .glitch::before {
-  color: var(--color-accent);
+  color: transparent;
   animation: glitch-1 3s infinite linear alternate-reverse;
-  clip-path: inset(0 0 var(--glitch-clip) 0);
+  /* Segmented VU meter: green -> yellow -> orange -> red with dark gaps */
+  background-image:
+    repeating-linear-gradient(
+      to top,
+      /* segment body */
+      transparent 0 3px,
+      /* dark gap between segments */
+      rgba(5, 5, 5, 1) 3px 5px
+    ),
+    linear-gradient(
+      to top,
+      /* green zone — bottom 40% */
+      #22c55e 0%,
+      #4ade80 18%,
+      /* yellow zone — 40-65% */
+      #facc15 40%,
+      #eab308 52%,
+      /* orange zone — 65-82% */
+      #f97316 65%,
+      #ea580c 76%,
+      /* red zone — top 82-100% */
+      #ef4444 82%,
+      #dc2626 100%
+    );
+  background-size: 100% var(--glitch-fill), 100% var(--glitch-fill);
+  background-position: left bottom, left bottom;
+  background-repeat: no-repeat, no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   translate: var(--glitch-dx) var(--glitch-dy);
+  filter:
+    drop-shadow(0 0 8px rgba(255, 102, 0, 0.28))
+    drop-shadow(0 0 20px rgba(255, 102, 0, var(--glitch-glow)));
 }
 
 .glitch::after {
   color: var(--color-white-pure);
   animation: glitch-2 2.5s infinite linear alternate-reverse;
-  clip-path: inset(var(--glitch-clip) 0 0 0);
+  clip-path: inset(0 0 var(--glitch-slice) 0);
   translate: calc(var(--glitch-dx) * -1) calc(var(--glitch-dy) * -1);
+  opacity: var(--glitch-ghost-opacity);
+  z-index: 3;
 }
 
 @keyframes glitch-1 {

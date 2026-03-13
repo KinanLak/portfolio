@@ -138,7 +138,7 @@ export default function Hero() {
                 data-text={profileData.name.split(" ")[0]}
                 className="glitch block text-[clamp(6rem,20vw,22rem)] text-white-pure"
               >
-                {profileData.name.split(" ")[0]}
+                <span className="glitch-base">{profileData.name.split(" ")[0]}</span>
               </span>
             </div>
             <div className="overflow-hidden">

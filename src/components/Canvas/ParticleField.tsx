@@ -4,6 +4,13 @@ import * as THREE from "three";
 import { musicController } from "@/hooks/useMusicPlayer";
 
 const PARTICLE_COUNT = 800;
+const PARTICLE_TEXTURE = new THREE.TextureLoader().load(
+  `data:image/svg+xml;utf8,${encodeURIComponent(`
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="32" fill="white" />
+    </svg>
+  `)}`
+);
 
 interface ParticleFieldBuffers {
   originalPositions: Float32Array;
@@ -151,8 +158,11 @@ export default function ParticleField({ mousePosition }: ParticleFieldProps) {
         ref={materialRef}
         size={0.04}
         color="#FF6600"
+        map={PARTICLE_TEXTURE}
+        alphaMap={PARTICLE_TEXTURE}
         transparent
         opacity={0.45}
+        alphaTest={0.01}
         sizeAttenuation
         depthWrite={false}
         blending={THREE.AdditiveBlending}
